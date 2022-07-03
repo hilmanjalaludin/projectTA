@@ -149,6 +149,9 @@ oTable.fnDraw(false);
 $('#CompanyForm').submit(function(e) {
 e.preventDefault();
 var formData = new FormData(this);
+    console.log('halo',formData)
+    // return false
+
 $.ajax({
 type:'POST',
 url: "{{ url('store-company')}}",

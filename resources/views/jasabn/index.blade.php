@@ -35,7 +35,7 @@
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Latest Transaction</h4>
                                         <div class="table-responsive">
-                                        <div class="pull-right mb-2">
+                         <div class="pull-right mb-2">
                 <a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Create Company</a>
             </div>
 
@@ -45,17 +45,13 @@
         </div>
         @endif
         <div class="card-body">
-            <table class="table table-bordered" id="get-klien">
+            <table class="table table-bordered" id="get-jsbn">
                 <thead>
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Address</th>
-                    <th>Created at</th>
-                    <th>Created at</th>
-                    <th>Created at</th>
-                    <th>Created at</th>
                     <th>Created at</th>
                     <th>Action</th>
                 </tr>
@@ -73,53 +69,30 @@
                     </div>
                     <div class="modal-body">
                                 <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                    <input type="hidden" name="id_klien" id="id_klien">
+                                    <input type="hidden" name="no_pembayaran" id="no_pembayaran">
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Nama Klien</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="nama_klien" name="nama_klien" placeholder="Enter Company Name" maxlength="50" required="">
+                                            <input type="text" class="form-control" id="no_pengajuan" name="no_pengajuan" placeholder="Enter Company Name" maxlength="50" required="">
                                         </div>
                                     </div>  
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">NIK Klien</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="nik_klien" name="nik_klien" placeholder="Enter Company Email" maxlength="50" required="">
+                                            <input type="text" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran" placeholder="Enter Company Email" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Tempat Lahir</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="tempat_lahir_klien" name="tempat_lahir_klien" placeholder="Enter Company Address" required="">
+                                            <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Enter Company Address" required="">
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Tanggal Lahir</label>
                                         <div class="col-sm-12">
-                                            <input class="form-control" type="date" name="tgl_lahir_klien" id="tgl_lahir_klien" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Jenis Kelamin</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="jenis_kelamin_klien" name="jenis_kelamin_klien" placeholder="Enter Company Address" required="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Pekerjaan</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="pekerjaan_klien" name="pekerjaan_klien" placeholder="Enter Company Address" required="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Alamat</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="nlamat_klien" name="nlamat_klien" placeholder="Enter Company Address" required="">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">No Telpon</label>
-                                        <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="no_tlp_klien" name="no_tlp_klien" placeholder="Enter Company Address" required="">
+                                            <input class="form-control" type="date" name="tgl_pembayaran" id="tgl_pembayaran" required>
                                         </div>
                                     </div>
                                     
@@ -135,7 +108,10 @@
         </div>
     </div>
     <!-- end bootstrap model -->
-    </div>
+
+
+
+</div>
                                         <!-- end table-responsive -->
                                     </div>
                                 </div>
@@ -169,8 +145,7 @@
         <!-- dashboard init -->
         <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
         <!-- App js -->
-        <script src="{{ asset('assets/js/app.js') }}"></script>
-
+        <script src="{{ asset('assets/js/app.js') }}"></script>    
 <script type="text/javascript">
 $(document).ready( function () {
         $.ajaxSetup({
@@ -180,20 +155,17 @@ $(document).ready( function () {
         });
 
 
-    $('#get-klien').DataTable({
+    $('#get-jsbn').DataTable({
     processing: true,
     serverSide: true,
-    ajax: "{{ url('get-klien') }}",
+    ajax: "{{ url('get-jsbn') }}",
         columns: [
-                    { data: 'id_klien', name: 'id_klien' },
-                    { data: 'nama_klien', name: 'nama_klien' },
-                    { data: 'nik_klien', name: 'nik_klien' },
-                    { data: 'tempat_lahir_klien', name: 'tempat_lahir_klien' },
-                    { data: 'tgl_lahir_klien', name: 'tgl_lahir_klien' },
-                    { data: 'jenis_kelamin_klien', name: 'jenis_kelamin_klien' },
-                    { data: 'pekerjaan_klien', name: 'pekerjaan_klien' },
-                    { data: 'nlamat_klien', name: 'nlamat_klien' },
-                    { data: 'no_tlp_klien', name: 'no_tlp_klien' },
+                    { data: 'no_pembayaran', name: 'no_pembayaran' },
+                    { data: 'no_pengajuan', name: 'no_pengajuan' },
+                    { data: 'tgl_pembayaran', name: 'tgl_pembayaran' },
+                    { data: 'jumlah_pembayaran', name: 'jumlah_pembayaran' },
+                    { data: 'keterangan', name: 'keterangan' },
+
                     {data: 'action', name: 'action', orderable: false},
                 ],
         order: [[0, 'desc']]
@@ -204,31 +176,28 @@ $(document).ready( function () {
         $('#CompanyForm').trigger("reset");
         $('#CompanyModal').html("Add Company");
         $('#company-modal').modal('show');
-        $('#id_klien').val('');
+        $('#no_pembayaran').val('');
     }   
 
     // alert()
-    function editFunc(id_klien){
+    function editFunc(no_pembayaran){
         // console.log('edit')
         // return false
         $.ajax({
             type:"POST",
-            url: "{{ url('edit-klien') }}",
-            data: { id_klien: id_klien },
+            url: "{{ url('edit-jsbn') }}",
+            data: { no_pembayaran: no_pembayaran },
             dataType: 'json',
             success: function(res){
                 console.log('edit res',res)
             $('#CompanyModal').html("Edit Company");
             $('#company-modal').modal('show');
-            $('#id_klien').val(res.id_klien);
-            $('#nama_klien').val(res.nama_klien);
-            $('#nik_klien').val(res.nik_klien);
-            $('#tempat_lahir_klien').val(res.tempat_lahir_klien);
-            $('#tgl_lahir_klien').val(res.tgl_lahir_klien);
-            $('#jenis_kelamin_klien').val(res.jenis_kelamin_klien);
-            $('#pekerjaan_klien').val(res.pekerjaan_klien);
-            $('#nlamat_klien').val(res.nlamat_klien);
-            $('#no_tlp_klien').val(res.no_tlp_klien);
+            $('#no_pembayaran').val(res.no_pembayaran);
+            $('#no_pengajuan').val(res.no_pengajuan);
+            $('#jumlah_pembayaran').val(res.jumlah_pembayaran);
+            $('#keterangan').val(res.keterangan);
+            $('#tgl_pembayaran').val(res.tgl_pembayaran);
+           
             }
         });
     }  
@@ -240,11 +209,11 @@ $(document).ready( function () {
         // ajax
         $.ajax({
                 type:"POST",
-                url: "{{ url('delete-klien') }}",
+                url: "{{ url('delete-jsbn') }}",
                 data: { id: id },
                 dataType: 'json',
                 success: function(res){
-                    var oTable = $('#get-klien').dataTable();
+                    var oTable = $('#get-jsbn').dataTable();
                 oTable.fnDraw(false);
                 }
                 });
@@ -259,14 +228,14 @@ $(document).ready( function () {
 
         $.ajax({
             type:'POST',
-            url: "{{ url('store-klien')}}",
+            url: "{{ url('store-jsbn')}}",
             data: formData,
             cache:false,
             contentType: false,
             processData: false,
             success: (data) => {
                 $("#company-modal").modal('hide');
-                var oTable = $('#get-klien').dataTable();
+                var oTable = $('#get-jsbn').dataTable();
                 oTable.fnDraw(false);
                 $("#btn-save").html('Submit');
                 $("#btn-save"). attr("disabled", false);

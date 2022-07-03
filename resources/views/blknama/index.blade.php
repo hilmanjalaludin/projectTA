@@ -35,9 +35,10 @@
                                     <div class="card-body">
                                         <h4 class="card-title mb-4">Latest Transaction</h4>
                                         <div class="table-responsive">
-                                        <div class="pull-right mb-2">
+ <div class="pull-right mb-2">
                 <a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Create Company</a>
             </div>
+
 
         @if ($message = Session::get('success'))
         <div class="alert alert-success">
@@ -45,7 +46,7 @@
         </div>
         @endif
         <div class="card-body">
-            <table class="table table-bordered" id="get-klien">
+            <table class="table table-bordered" id="get-blknama">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -73,60 +74,63 @@
                     </div>
                     <div class="modal-body">
                                 <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                    <input type="hidden" name="id_klien" id="id_klien">
+                                    <input type="hidden" name="no_pengajuan" id="no_pengajuan">
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Nama Klien</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="nama_klien" name="nama_klien" placeholder="Enter Company Name" maxlength="50" required="">
+                                            <input type="text" class="form-control" id="jenis_pengajuan" name="jenis_pengajuan" placeholder="Enter Company Name" maxlength="50" required="">
                                         </div>
                                     </div>  
+                                     <div class="form-group">
+                                        <label class="col-sm-2 control-label">Tanggal Lahir</label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control" type="date" name="tgl_pengajuan" id="tgl_pengajuan" required>
+                                        </div>
+                                    </div>
+
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">NIK Klien</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="nik_klien" name="nik_klien" placeholder="Enter Company Email" maxlength="50" required="">
+                                            <input type="text" class="form-control" id="syarat_ktp" name="syarat_ktp" placeholder="Enter Company Email" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Tempat Lahir</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="tempat_lahir_klien" name="tempat_lahir_klien" placeholder="Enter Company Address" required="">
+                                            <input type="text" class="form-control" id="syarat_kk" name="syarat_kk" placeholder="Enter Company Address" required="">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label">Tanggal Lahir</label>
-                                        <div class="col-sm-12">
-                                            <input class="form-control" type="date" name="tgl_lahir_klien" id="tgl_lahir_klien" required>
-                                        </div>
-                                    </div>
+                                   
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Jenis Kelamin</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="jenis_kelamin_klien" name="jenis_kelamin_klien" placeholder="Enter Company Address" required="">
+                                            <input type="text" class="form-control" id="syarat_sppt" name="syarat_sppt" placeholder="Enter Company Address" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Pekerjaan</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="pekerjaan_klien" name="pekerjaan_klien" placeholder="Enter Company Address" required="">
+                                            <input type="text" class="form-control" id="syarat_surat_tanah" name="syarat_surat_tanah" placeholder="Enter Company Address" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">Alamat</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="nlamat_klien" name="nlamat_klien" placeholder="Enter Company Address" required="">
+                                            <input type="text" class="form-control" id="biaya_pembuatan" name="biaya_pembuatan" placeholder="Enter Company Address" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label">No Telpon</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" id="no_tlp_klien" name="no_tlp_klien" placeholder="Enter Company Address" required="">
+                                            <input type="text" class="form-control" id="jenis_pembayaran" name="jenis_pembayaran" placeholder="Enter Company Address" required="">
                                         </div>
                                     </div>
                                     
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-primary" id="btn-save">Save changes</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
+                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        </div>
                                 </form>
                     </div>
                 <div class="modal-footer">
@@ -135,7 +139,11 @@
         </div>
     </div>
     <!-- end bootstrap model -->
-    </div>
+
+
+
+
+</div>
                                         <!-- end table-responsive -->
                                     </div>
                                 </div>
@@ -169,8 +177,7 @@
         <!-- dashboard init -->
         <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
         <!-- App js -->
-        <script src="{{ asset('assets/js/app.js') }}"></script>
-
+        <script src="{{ asset('assets/js/app.js') }}"></script>        
 <script type="text/javascript">
 $(document).ready( function () {
         $.ajaxSetup({
@@ -180,20 +187,20 @@ $(document).ready( function () {
         });
 
 
-    $('#get-klien').DataTable({
+    $('#get-blknama').DataTable({
     processing: true,
     serverSide: true,
-    ajax: "{{ url('get-klien') }}",
+    ajax: "{{ url('get-blknama') }}",
         columns: [
-                    { data: 'id_klien', name: 'id_klien' },
-                    { data: 'nama_klien', name: 'nama_klien' },
-                    { data: 'nik_klien', name: 'nik_klien' },
-                    { data: 'tempat_lahir_klien', name: 'tempat_lahir_klien' },
-                    { data: 'tgl_lahir_klien', name: 'tgl_lahir_klien' },
-                    { data: 'jenis_kelamin_klien', name: 'jenis_kelamin_klien' },
-                    { data: 'pekerjaan_klien', name: 'pekerjaan_klien' },
-                    { data: 'nlamat_klien', name: 'nlamat_klien' },
-                    { data: 'no_tlp_klien', name: 'no_tlp_klien' },
+                    { data: 'no_pengajuan', name: 'no_pengajuan' },
+                    { data: 'tgl_pengajuan', name: 'tgl_pengajuan' },
+                    { data: 'jenis_pengajuan', name: 'jenis_pengajuan' },
+                    { data: 'syarat_ktp', name: 'syarat_ktp' },
+                    { data: 'syarat_kk', name: 'syarat_kk' },
+                    { data: 'syarat_sppt', name: 'syarat_sppt' },
+                    { data: 'syarat_surat_tanah', name: 'syarat_surat_tanah' },
+                    { data: 'biaya_pembuatan', name: 'biaya_pembuatan' },
+                    { data: 'jenis_pembayaran', name: 'jenis_pembayaran' },
                     {data: 'action', name: 'action', orderable: false},
                 ],
         order: [[0, 'desc']]
@@ -204,31 +211,31 @@ $(document).ready( function () {
         $('#CompanyForm').trigger("reset");
         $('#CompanyModal').html("Add Company");
         $('#company-modal').modal('show');
-        $('#id_klien').val('');
+        $('#no_pengajuan').val('');
     }   
 
     // alert()
-    function editFunc(id_klien){
+    function editFunc(no_pengajuan){
         // console.log('edit')
         // return false
         $.ajax({
             type:"POST",
-            url: "{{ url('edit-klien') }}",
-            data: { id_klien: id_klien },
+            url: "{{ url('edit-blknama') }}",
+            data: { no_pengajuan: no_pengajuan },
             dataType: 'json',
             success: function(res){
                 console.log('edit res',res)
             $('#CompanyModal').html("Edit Company");
             $('#company-modal').modal('show');
-            $('#id_klien').val(res.id_klien);
-            $('#nama_klien').val(res.nama_klien);
-            $('#nik_klien').val(res.nik_klien);
-            $('#tempat_lahir_klien').val(res.tempat_lahir_klien);
-            $('#tgl_lahir_klien').val(res.tgl_lahir_klien);
-            $('#jenis_kelamin_klien').val(res.jenis_kelamin_klien);
-            $('#pekerjaan_klien').val(res.pekerjaan_klien);
-            $('#nlamat_klien').val(res.nlamat_klien);
-            $('#no_tlp_klien').val(res.no_tlp_klien);
+            $('#no_pengajuan').val(res.no_pengajuan);
+            $('#tgl_pengajuan').val(res.tgl_pengajuan);
+            $('#jenis_pengajuan').val(res.jenis_pengajuan);
+            $('#syarat_ktp').val(res.syarat_ktp);
+            $('#syarat_kk').val(res.syarat_kk);
+            $('#syarat_sppt').val(res.syarat_sppt);
+            $('#syarat_surat_tanah').val(res.syarat_surat_tanah);
+            $('#biaya_pembuatan').val(res.biaya_pembuatan);
+            $('#jenis_pembayaran').val(res.jenis_pembayaran);
             }
         });
     }  
@@ -240,11 +247,11 @@ $(document).ready( function () {
         // ajax
         $.ajax({
                 type:"POST",
-                url: "{{ url('delete-klien') }}",
+                url: "{{ url('delete-blknama') }}",
                 data: { id: id },
                 dataType: 'json',
                 success: function(res){
-                    var oTable = $('#get-klien').dataTable();
+                    var oTable = $('#get-blknama').dataTable();
                 oTable.fnDraw(false);
                 }
                 });
@@ -259,14 +266,14 @@ $(document).ready( function () {
 
         $.ajax({
             type:'POST',
-            url: "{{ url('store-klien')}}",
+            url: "{{ url('store-blknama')}}",
             data: formData,
             cache:false,
             contentType: false,
             processData: false,
             success: (data) => {
                 $("#company-modal").modal('hide');
-                var oTable = $('#get-klien').dataTable();
+                var oTable = $('#get-blknama').dataTable();
                 oTable.fnDraw(false);
                 $("#btn-save").html('Submit');
                 $("#btn-save"). attr("disabled", false);

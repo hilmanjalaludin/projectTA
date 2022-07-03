@@ -8,7 +8,7 @@ use Datatables;
 use App\Helpers\FlashMessages;
 use Illuminate\Support\Facades\DB;
 
-class KlienController extends Controller
+class LaporanjrController extends Controller
 {
 public function index()
     {

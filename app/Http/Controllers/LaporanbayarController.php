@@ -8,9 +8,9 @@ use Datatables;
 use App\Helpers\FlashMessages;
 use Illuminate\Support\Facades\DB;
 
-class KlienController extends Controller
+class LaporanbayarController extends Controller
 {
-public function index()
+    public function index()
     {
         if(request()->ajax()) {
             return datatables()->of(Klien::select('*'))
