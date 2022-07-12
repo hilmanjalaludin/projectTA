@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Klien; 
+use App\Laporanbayar;
 use Datatables;
 use App\Helpers\FlashMessages;
 use Illuminate\Support\Facades\DB;
@@ -12,17 +12,22 @@ class LaporanbayarController extends Controller
 {
     public function index()
     {
-        if(request()->ajax()) {
-            return datatables()->of(Klien::select('*'))
-            ->addColumn('action', 'company-action')
-            ->rawColumns(['action'])
-            ->addIndexColumn()
-            ->make(true);
+        if (request()->ajax()) {
+            return datatables()->of(Laporanbayar::select('*'))
+                // ->addColumn('action', 'asd')
+                ->addColumn('action', function ($data) {
+                    $button = '<button type="button" name="edit" id="' . $data->no_pembayaran . '" class="edit btn btn-primary btn-sm">Edit</button>';
+                    $button .= '&nbsp;&nbsp;&nbsp;<button type="button" name="edit" id="' . $data->no_pembayaran . '" class="delete btn btn-danger btn-sm">Delete</button>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->addIndexColumn()
+                ->make(true);
         }
-        return view('klien.index');
+        return view('lpbayar.index');
     }
-      
-      
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -30,44 +35,38 @@ class LaporanbayarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
-        $companyId = $request->id_klien;
+    {
+        $companyId = $request->no_pembayaran;
         //  dd($companyId);
         if ($companyId == '') {
-             $company = Klien::insert(
-                            [
-                                'nama_klien' => $request->nama_klien, 
-                                'nik_klien' => $request->nik_klien,
-                                'tempat_lahir_klien' => $request->tempat_lahir_klien,
-                                'tgl_lahir_klien' => $request->tgl_lahir_klien,
-                                'jenis_kelamin_klien' => $request->jenis_kelamin_klien,
-                                'pekerjaan_klien' => $request->pekerjaan_klien,
-                                'nlamat_klien' => $request->nlamat_klien,
-                                'no_tlp_klien' => $request->no_tlp_klien,
-                            ]
-                        );   
-                        }else {
-             $company = DB::table('klien')
-              ->where('id_klien', $companyId)
-              ->update(
-                  [
-                             'nama_klien' => $request->nama_klien, 
-                                'nik_klien' => $request->nik_klien,
-                                'tempat_lahir_klien' => $request->tempat_lahir_klien,
-                                'tgl_lahir_klien' => $request->tgl_lahir_klien,
-                                'jenis_kelamin_klien' => $request->jenis_kelamin_klien,
-                                'pekerjaan_klien' => $request->pekerjaan_klien,
-                                'nlamat_klien' => $request->nlamat_klien,
-                                'no_tlp_klien' => $request->no_tlp_klien,
-                            ]
+            $company = Laporanbayar::insert(
+                [
+                    'no_pengajuan' => $request->no_pengajuan,
+                    'tgl_pembayaran' => $request->tgl_pembayaran,
+                    'jumlah_pembayaran' => $request->jumlah_pembayaran,
+                    'keterangan' => $request->keterangan,
+
+
+                ]
             );
-        }  
-                         
+        } else {
+            $company = DB::table('pembayaran')
+                ->where('no_pembayaran', $companyId)
+                ->update(
+                    [
+                        'no_pengajuan' => $request->no_pengajuan,
+                        'jumlah_pembayaran' => $request->jumlah_pembayaran,
+                        'tgl_pembayaran' => $request->tgl_pembayaran,
+                        'keterangan' => $request->keterangan,
+
+                    ]
+                );
+        }
+
         return Response()->json($company);
- 
     }
-      
-      
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -75,17 +74,17 @@ class LaporanbayarController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request)
-    {   
-        // dd($request->id_klien);
+    {
+        // dd($request->no_pembayaran);
         // die;
-        $where = array('id_klien' => $request->id_klien);
-        $company  = Klien::where($where)->first();
+        $where = array('no_pembayaran' => $request->no_pembayaran);
+        $company  = Laporanbayar::where($where)->first();
         // dd($company);
-      
+
         return Response()->json($company);
     }
-      
-      
+
+
     /**
      * Remove the specified resource from storage.
      *
@@ -94,8 +93,8 @@ class LaporanbayarController extends Controller
      */
     public function destroy(Request $request)
     {
-        $company = Klien::where('id_klien',$request->id)->delete();
-      
+        $company = Laporanbayar::where('no_pembayaran', $request->id)->delete();
+
         return Response()->json($company);
     }
 }

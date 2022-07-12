@@ -12,12 +12,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Klien</h4>
+                        <h4 class="mb-sm-0 font-size-18">Laporan Pembayaran</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Data Klien</a></li>
-                                <li class="breadcrumb-item active">Data Klien</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Laporan Pembayaran</a></li>
+                                <li class="breadcrumb-item active">Laporan Pembayaran</li>
                             </ol>
                         </div>
 
@@ -27,16 +27,17 @@
             <!-- end page title -->
 
             <!-- end row -->
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Data Klien</h4>
+                            <h4 class="card-title mb-4">Laporan Pembayaran</h4>
                             <div class="table-responsive">
                                 <div class="pull-right mb-2">
-                                    <a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Tambah</a>
+                                    <a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Tanggal</a>
+                                </div>
+                                <div class="pull-right mb-2">
+                                    <a class="btn btn-primary" onClick="add()" href="javascript:void(0)"> Laporan Excel</a>
                                 </div>
 
                                 @if ($message = Session::get('success'))
@@ -45,18 +46,14 @@
                                 </div>
                                 @endif
                                 <div class="card-body">
-                                    <table class="table table-bordered" id="get-klien">
+                                    <table class="table table-bordered" id="get-lpbayar">
                                         <thead>
                                             <tr>
                                                 <th>Id</th>
-                                                <th>Nama Klien</th>
-                                                <th>NIK Klien</th>
-                                                <th>Tempat Lahir</th>
-                                                <th>Tanggal Lahir</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>Pekerjaan</th>
-                                                <th>Alamat</th>
-                                                <th>No Telpon</th>
+                                                <th>No Pengajuan</th>
+                                                <th>Tanggal Pembayaran</th>
+                                                <th>Jumlah Pembayaran</th>
+                                                <th>Keterangan</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -73,58 +70,35 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="id_klien" id="id_klien">
+                                                <input type="hidden" name="no_pembayaran" id="no_pembayaran">
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">Nama Klien</label>
+                                                    <label for="name" class="col-sm-2 control-label">No Pengajuan</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="nama_klien" name="nama_klien" placeholder="Input Nama Klien" maxlength="50" required="">
+                                                        <input type="text" class="form-control" id="no_pengajuan" name="no_pengajuan" placeholder="Input No Pengajuan" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">NIK Klien</label>
+                                                    <label for="name" class="col-sm-2 control-label">Jumlah Pembayaran</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="nik_klien" name="nik_klien" placeholder="Input NIK" maxlength="50" required="">
+                                                        <input type="text" class="form-control" id="jumlah_pembayaran" name="jumlah_pembayaran" placeholder="Input Jumlah Pembayaran" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Tempat Lahir</label>
+                                                    <label class="col-sm-2 control-label">Keterangan</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="tempat_lahir_klien" name="tempat_lahir_klien" placeholder="Input Tempat Lahir" required="">
+                                                        <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Input Keterangan" required="">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Tanggal Lahir</label>
+                                                    <label class="col-sm-2 control-label">Tanggal Pembayaran</label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" type="date" name="tgl_lahir_klien" id="tgl_lahir_klien" required>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Jenis Kelamin</label>
-                                                    <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="jenis_kelamin_klien" name="jenis_kelamin_klien" placeholder="Input Jenis Kelamin" required="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Pekerjaan</label>
-                                                    <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="pekerjaan_klien" name="pekerjaan_klien" placeholder="Input Pekerjaan" required="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Alamat</label>
-                                                    <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="nlamat_klien" name="nlamat_klien" placeholder="Input Alamat" required="">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label">No Telpon</label>
-                                                    <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="no_tlp_klien" name="no_tlp_klien" placeholder="Input No Telpon" required="">
+                                                        <input class="form-control" type="date" name="tgl_pembayaran" id="tgl_pembayaran" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
+                                                    <button type="submit" class="btn btn-primary" id="btn-save">Tambah</button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                                 </div>
                                             </form>
@@ -135,6 +109,9 @@
                                 </div>
                             </div>
                             <!-- end bootstrap model -->
+
+
+
                         </div>
                         <!-- end table-responsive -->
                     </div>
@@ -170,7 +147,6 @@
 <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
-
 <script type="text/javascript">
     $(document).ready(function() {
         $.ajaxSetup({
@@ -180,46 +156,31 @@
         });
 
 
-        $('#get-klien').DataTable({
+        $('#get-lpbayar').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ url('get-klien') }}",
+            ajax: "{{ url('get-lpbayar') }}",
             columns: [{
-                    data: 'id_klien',
-                    name: 'id_klien'
+                    data: 'no_pembayaran',
+                    name: 'no_pembayaran'
                 },
                 {
-                    data: 'nama_klien',
-                    name: 'nama_klien'
+                    data: 'no_pengajuan',
+                    name: 'no_pengajuan'
                 },
                 {
-                    data: 'nik_klien',
-                    name: 'nik_klien'
+                    data: 'tgl_pembayaran',
+                    name: 'tgl_pembayaran'
                 },
                 {
-                    data: 'tempat_lahir_klien',
-                    name: 'tempat_lahir_klien'
+                    data: 'jumlah_pembayaran',
+                    name: 'jumlah_pembayaran'
                 },
                 {
-                    data: 'tgl_lahir_klien',
-                    name: 'tgl_lahir_klien'
+                    data: 'keterangan',
+                    name: 'keterangan'
                 },
-                {
-                    data: 'jenis_kelamin_klien',
-                    name: 'jenis_kelamin_klien'
-                },
-                {
-                    data: 'pekerjaan_klien',
-                    name: 'pekerjaan_klien'
-                },
-                {
-                    data: 'nlamat_klien',
-                    name: 'nlamat_klien'
-                },
-                {
-                    data: 'no_tlp_klien',
-                    name: 'no_tlp_klien'
-                },
+
                 {
                     data: 'action',
                     name: 'action',
@@ -234,35 +195,32 @@
 
     function add() {
         $('#CompanyForm').trigger("reset");
-        $('#CompanyModal').html("Tambah Data Klien");
+        $('#CompanyModal').html("Tambah Laporan Pembayaran");
         $('#company-modal').modal('show');
-        $('#id_klien').val('');
+        $('#no_pembayaran').val('');
     }
 
     // alert()
-    function editFunc(id_klien) {
+    function editFunc(no_pembayaran) {
         // console.log('edit')
         // return false
         $.ajax({
             type: "POST",
-            url: "{{ url('edit-klien') }}",
+            url: "{{ url('edit-lpbayar') }}",
             data: {
-                id_klien: id_klien
+                no_pembayaran: no_pembayaran
             },
             dataType: 'json',
             success: function(res) {
                 console.log('edit res', res)
                 $('#CompanyModal').html("Edit Company");
                 $('#company-modal').modal('show');
-                $('#id_klien').val(res.id_klien);
-                $('#nama_klien').val(res.nama_klien);
-                $('#nik_klien').val(res.nik_klien);
-                $('#tempat_lahir_klien').val(res.tempat_lahir_klien);
-                $('#tgl_lahir_klien').val(res.tgl_lahir_klien);
-                $('#jenis_kelamin_klien').val(res.jenis_kelamin_klien);
-                $('#pekerjaan_klien').val(res.pekerjaan_klien);
-                $('#nlamat_klien').val(res.nlamat_klien);
-                $('#no_tlp_klien').val(res.no_tlp_klien);
+                $('#no_pembayaran').val(res.no_pembayaran);
+                $('#no_pengajuan').val(res.no_pengajuan);
+                $('#jumlah_pembayaran').val(res.jumlah_pembayaran);
+                $('#keterangan').val(res.keterangan);
+                $('#tgl_pembayaran').val(res.tgl_pembayaran);
+
             }
         });
     }
@@ -275,13 +233,13 @@
             // ajax
             $.ajax({
                 type: "POST",
-                url: "{{ url('delete-klien') }}",
+                url: "{{ url('delete-lpbayar') }}",
                 data: {
                     id: id
                 },
                 dataType: 'json',
                 success: function(res) {
-                    var oTable = $('#get-klien').dataTable();
+                    var oTable = $('#get-lpbayar').dataTable();
                     oTable.fnDraw(false);
                 }
             });
@@ -296,14 +254,14 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ url('store-klien')}}",
+            url: "{{ url('store-lpbayar')}}",
             data: formData,
             cache: false,
             contentType: false,
             processData: false,
             success: (data) => {
                 $("#company-modal").modal('hide');
-                var oTable = $('#get-klien').dataTable();
+                var oTable = $('#get-lpbayar').dataTable();
                 oTable.fnDraw(false);
                 $("#btn-save").html('Submit');
                 $("#btn-save").attr("disabled", false);

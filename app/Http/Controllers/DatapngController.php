@@ -3,30 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Jasabn;
+use App\DataPng;
 use Datatables;
 use App\Helpers\FlashMessages;
 use Illuminate\Support\Facades\DB;
 
-class JasabnController extends Controller
+
+class DatapngController extends Controller
 {
     public function index()
     {
         if (request()->ajax()) {
-            $data = Jasabn::select('*');
+            $data = DataPng::select('*');
             return datatables()->of($data)
                 // ->addColumn('action', 'company-action')
 
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="javascript:void(0)" data-toggle="tooltip" onclick="editFunc(' . $data->no_pembayaran . ' )" data-original-title="Edit" class="edit btn btn-primary edit">Edit</a>';
-                    $button .= '&nbsp; <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->no_pembayaran . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger">Delete</a>';
+                    $button = '<a href="javascript:void(0)" data-toggle="tooltip" onclick="editFunc(' . $data->id_pengguna . ' )" data-original-title="Edit" class="edit btn btn-primary edit">Edit</a>';
+                    $button .= '&nbsp; <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->id_pengguna . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger">Delete</a>';
                     return $button;
                 })
                 ->rawColumns(['action'])
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('jasabn.index');
+        return view('dtpng.index');
     }
 
 
@@ -38,27 +39,28 @@ class JasabnController extends Controller
      */
     public function store(Request $request)
     {
-        $companyId = $request->no_pembayaran;
+        $companyId = $request->id_pengguna;
         //  dd($companyId);
         if ($companyId == '') {
-            $company = Jasabn::insert(
+            $company = DataPng::insert(
                 [
-                    'no_pengajuan' => $request->no_pengajuan,
-                    'tgl_pembayaran' => $request->tgl_pembayaran,
-                    'jumlah_pembayaran' => $request->jumlah_pembayaran,
-                    'keterangan' => $request->keterangan,
+                    'nama_pengguna' => $request->nama_pengguna,
+                    'password' => $request->password,
+                    'hak_akses' => $request->hak_akses,
+
 
                 ]
             );
         } else {
-            $company = DB::table('pembayaran')
-                ->where('no_pembayaran', $companyId)
+            $company = DB::table('pengguna')
+                ->where('id_pengguna', $companyId)
                 ->update(
                     [
-                        'no_pengajuan' => $request->no_pengajuan,
-                        'tgl_pembayaran' => $request->tgl_pembayaran,
-                        'jumlah_pembayaran' => $request->jumlah_pembayaran,
-                        'keterangan' => $request->keterangan,
+                        'nama_pengguna' => $request->nama_pengguna,
+                        'password' => $request->password,
+                        'hak_akses' => $request->hak_akses,
+
+
                     ]
                 );
         }
@@ -75,10 +77,10 @@ class JasabnController extends Controller
      */
     public function edit(Request $request)
     {
-        // dd($request->no_pembayaran);
+        // dd($request->id_pengguna);
         // die;
-        $where = array('no_pembayaran' => $request->no_pembayaran);
-        $company  = Jasabn::where($where)->first();
+        $where = array('id_pengguna' => $request->id_pengguna);
+        $company  = DataPng::where($where)->first();
         // dd($company);
 
         return Response()->json($company);
@@ -93,7 +95,7 @@ class JasabnController extends Controller
      */
     public function destroy(Request $request)
     {
-        $company = Jasabn::where('no_pembayaran', $request->id)->delete();
+        $company = DataPng::where('id_pengguna', $request->id)->delete();
 
         return Response()->json($company);
     }
