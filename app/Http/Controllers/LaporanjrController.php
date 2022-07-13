@@ -12,7 +12,7 @@ class LaporanjrController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($request['tgl_jurnal1']);
+        //asdasd dd($request['tgl_jurnal1']);
         if ($request['tgl_jurnal1'] != '' && $request['tgl_jurnal2'] != '') {
             $tampil = DB::table('jurnal')
                 ->where('tgl_jurnal', '=', $request['tgl_jurnal1'])
@@ -22,8 +22,6 @@ class LaporanjrController extends Controller
 
             $tampil = "";
         }
-
-
         return view('lpjurnal.index', compact('tampil'));
     }
 }
