@@ -51,6 +51,7 @@
                                                 <th>Kode Perkiraan</th>
                                                 <th>Nama Perkiraan</th>
                                                 <th>Jenis Perkiraan</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -148,6 +149,12 @@
                 {
                     data: 'jns_perkiraan',
                     name: 'jns_perkiraan'
+                },
+
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false
                 },
             ],
             order: [

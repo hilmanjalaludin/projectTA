@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class DataPng extends Model
 {
-     protected $table = 'pengguna';
-    protected $fillable = [ 'nama_pengguna', 'Password', 'hak_akses'];   
+     protected $table = 'user';
+    protected $fillable = [ 'name', 'Password', 'hak_akses','no_ktp','jenkel','telpon','almt'];   
 }

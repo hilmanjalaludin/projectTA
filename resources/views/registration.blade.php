@@ -27,10 +27,10 @@
                                 <form action="{{url('post-registration')}}" method="POST" id="regForm">
                                     {{ csrf_field() }}
                                     <div class="form-label-group">
-                                        <input type="text" id="inputName" name="nama_pengguna" class="form-control" placeholder="Full name" autofocus>
+                                        <input type="text" id="inputName" name="name" class="form-control" placeholder="Full name" autofocus>
                                         <label for="inputName">Name</label>
-                                        @if ($errors->has('nama_pengguna'))
-                                        <span class="error">{{ $errors->first('nama_pengguna') }}</span>
+                                        @if ($errors->has('name'))
+                                        <span class="error">{{ $errors->first('name') }}</span>
                                         @endif
                                     </div>
 

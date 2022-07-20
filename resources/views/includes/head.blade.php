@@ -32,7 +32,7 @@
                     <div class="d-flex">
                         <!-- LOGO -->
                         <div class="navbar-brand-box">
-                            <a href="index.html" class="logo logo-dark">
+                            <a href="{{ route('dashboard.index') }}" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo.svg" alt="" height="22">
                                 </span>
@@ -41,7 +41,7 @@
                                 </span>
                             </a>
 
-                            <a href="index.html" class="logo logo-light">
+                            <a href="{{ route('dashboard.index') }}" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="assets/images/logo-light.svg" alt="" height="22">
                                 </span>
@@ -59,9 +59,10 @@
                     </div>
 
                     <div class="d-flex"> 
-                        <a class="dropdown-item text-danger" href="{{url('logout')}}"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
+                        {{-- <a class="dropdown-item text-danger" href="{{url('logout')}}">
+                            <i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i>
                                      <span key="t-logout">Logout</span>
-                                </a>
+                                </a> --}}
                         {{-- <div class="dropdown d-inline-block">
                             <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

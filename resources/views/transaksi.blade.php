@@ -13,12 +13,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Dashboard</h4>
+                        <h4 class="mb-sm-0 font-size-18">Transaksi</h4>
 
                         <div class="page-title-right">
                             <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Dashboard</a></li>
-                                <li class="breadcrumb-item active">Dashboard</li>
+                                <li class="breadcrumb-item"><a href="javascript: void(0);">Transaksi</a></li>
+                                <li class="breadcrumb-item active">Transaksi</li>
                             </ol>
                         </div>
 
@@ -52,14 +52,14 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
-                                        <h2 class="text-muted fw-medium">User</h2>
+                                        <h2 class="text-muted fw-medium">Penyewaan</h2>
                                         {{-- <h4 class="mb-0">1,235</h4> --}}
                                     </div>
 
                                     <div class="flex-shrink-0 align-self-center">
                                         <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
                                             <span class="avatar-title">
-                                                <i class="bx bx-user font-size-24"></i>
+                                                <i class="bx bx-grid-alt font-size-24"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -74,14 +74,14 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
-                                        <h2 class="text-muted fw-medium">Tarif Supir</h2>
+                                        <h2 class="text-muted fw-medium">Pengembalian</h2>
                                         {{-- <h4 class="mb-0">$35, 723</h4> --}}
                                     </div>
 
                                     <div class="flex-shrink-0 align-self-center ">
                                         <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                                             <span class="avatar-title rounded-circle bg-primary">
-                                                <i class="bx bx bx-money font-size-24"></i>
+                                                <i class="bx bx-wallet-alt font-size-24"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -96,14 +96,14 @@
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
-                                        <h2 class="text-muted fw-medium">Mobil</h2>
+                                        <h2 class="text-muted fw-medium">Jurnal</h2>
                                         {{-- <h4 class="mb-0">$16.2</h4> --}}
                                     </div>
 
                                     <div class="flex-shrink-0 align-self-center">
                                         <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                                             <span class="avatar-title rounded-circle bg-primary">
-                                                <i class="bx bx-car font-size-24"></i>
+                                                <i class="bx bx-code-block font-size-24"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -112,73 +112,7 @@
                         </div>
                     </a>    
                 </div>
-                {{-- kebawah --}}
-                <div class="col-md-4">
-                    <a href="{{ route('kondisi.index') }}" >
-                        <div class="card mini-stats-wid">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <h2 class="text-muted fw-medium">Kondisi Mobil</h2>
-                                        {{-- <h4 class="mb-0">1,235</h4> --}}
-                                    </div>
-
-                                    <div class="flex-shrink-0 align-self-center">
-                                        <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
-                                            <span class="avatar-title">
-                                                <i class="bx bx-copy-alt font-size-24"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="{{ route('dtprk.index') }}" >
-                        <div class="card mini-stats-wid">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <h2 class="text-muted fw-medium">Perkiraan</h2>
-                                        {{-- <h4 class="mb-0">$35, 723</h4> --}}
-                                    </div>
-
-                                    <div class="flex-shrink-0 align-self-center ">
-                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                                            <span class="avatar-title rounded-circle bg-primary">
-                                                <i class="bx bx-book font-size-24"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="{{ route('penyewa.index') }}" >
-                        <div class="card mini-stats-wid">
-                            <div class="card-body">
-                                <div class="d-flex">
-                                    <div class="flex-grow-1">
-                                        <h2 class="text-muted fw-medium">Penyewa</h2>
-                                        {{-- <h4 class="mb-0">$16.2</h4> --}}
-                                    </div>
-
-                                    <div class="flex-shrink-0 align-self-center">
-                                        <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
-                                            <span class="avatar-title rounded-circle bg-primary">
-                                                <i class="bx bx-user-plus font-size-24"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                
             </div>
 
 

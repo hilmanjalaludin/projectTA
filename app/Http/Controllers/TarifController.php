@@ -3,24 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\DataPrk;
+use App\Tarif;
 use Datatables;
 use App\Helpers\FlashMessages;
 use Illuminate\Support\Facades\DB;
 use Session;
-class DataprkController extends Controller
+class TarifController extends Controller
 {
+
     public function index()
     {
         if (request()->ajax()) {
-            $data = DataPrk::select('*');
+            $data = Tarif::select('*');
             if (Session::get('hak_akses') == 'direktur') {
             return datatables()->of($data)
-                // ->addColumn('action', 'company-action')
-
                 ->addColumn('action', function ($data) {
-                    $button = '<a href="javascript:void(0)" data-toggle="tooltip" onclick="editFunc(' . $data->kd_perkiraan . ' )" data-original-title="Edit" class="edit btn btn-primary edit" >Edit</a>';
-                    $button .= '&nbsp; <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->kd_perkiraan . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger" >Delete</a>';
+                    $button = '<a href="javascript:void(0)" data-toggle="tooltip" onclick="editFunc(' . $data->kd_tarif . ' )" data-original-title="Edit" class="edit btn btn-primary edit">Edit</a>';
+                    $button .= '&nbsp; <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->kd_tarif . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger">Delete</a>';
                     return $button;
                 })
                 ->rawColumns(['action'])
@@ -32,9 +31,9 @@ class DataprkController extends Controller
             }
         }
         if (Session::get('hak_akses') == 'direktur') {
-        return view('dtprk.indexd');
-        }
-        return view('dtprk.index');
+        return view('tarif.indexd');
+    }
+    return view('tarif.index');
     }
 
 
@@ -46,27 +45,30 @@ class DataprkController extends Controller
      */
     public function store(Request $request)
     {
-            $company = DataPrk::insert(
+        // dd($request);
+            $company = Tarif::insert(
                 [
-                    'kd_perkiraan' => $request->kd_perkiraan,
-                    'jns_perkiraan' => $request->jns_perkiraan,
-                    'nm_perkiraan' => $request->nm_perkiraan,
-
+                    'kd_tarif' => $request->kd_tarif,
+                    'daerah' => $request->daerah,
+                    'tarif' => $request->tarif,
                 ]
             );
        
+
         return Response()->json($company);
     }
+
     public function update(Request $request)
     {
-        $companyId = $request->kd_perkiraan;
-            $company = DB::table('perkiraan')
-                ->where('kd_perkiraan', $companyId)
+        $companyId = $request->kd_tarif;
+        //  dd($request);
+            $company = DB::table('Tarif')
+                ->where('kd_tarif', $companyId)
                 ->update(
                     [
-                        'jns_perkiraan' => $request->jns_perkiraan,
-                        'nm_perkiraan' => $request->nm_perkiraan,
-
+                        'daerah' => $request->daerah,
+                        'tarif' => $request->tarif,
+                        
                     ]
                 );
        
@@ -82,10 +84,10 @@ class DataprkController extends Controller
      */
     public function edit(Request $request)
     {
-        // dd($request->kd_perkiraan);
+        // dd($request->kd_tarif);
         // die;
-        $where = array('kd_perkiraan' => $request->kd_perkiraan);
-        $company  = DataPrk::where($where)->first();
+        $where = array('kd_tarif' => $request->kd_tarif);
+        $company  = Tarif::where($where)->first();
         // dd($company);
 
         return Response()->json($company);
@@ -100,7 +102,7 @@ class DataprkController extends Controller
      */
     public function destroy(Request $request)
     {
-        $company = DataPrk::where('kd_perkiraan', $request->id)->delete();
+        $company = Tarif::where('kd_tarif', $request->id)->delete();
 
         return Response()->json($company);
     }

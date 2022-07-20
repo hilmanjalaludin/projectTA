@@ -11,25 +11,25 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Isi Data Perkiraan</h4>
+                            <h4 class="card-title mb-4">Form Tarif Supir</h4>
                             <div class="table-responsive">
                                 <form action="javascript:void(0)" id="CompanyFormAdd" name="CompanyFormAdd" class="form-horizontal" method="POST" enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label">Kode Perkiraan</label>
+                                        <label for="name" class="col-sm-2 control-label">Kode Daerah</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="kd_perkiraan" placeholder="Input Kode Perkiraan" maxlength="50" required="">
+                                            <input type="number" class="form-control"  name="kd_tarif" placeholder="Input Kode Daerah" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label">Nama Perkiraan</label>
+                                        <label for="name" class="col-sm-2 control-label">Daerah</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" name="nm_perkiraan" placeholder="Input Nama Perkiraan" maxlength="50" required="">
+                                            <input type="text" class="form-control"  name="daerah" placeholder="Input Daerah" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label">Jenis Perkiraan</label>
+                                        <label for="name" class="col-sm-2 control-label">Tarif Supir</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control" name="jns_perkiraan" placeholder="Input Jenis Perkiraan" maxlength="50" required="">
+                                            <input type="text" class="form-control"  name="tarif" placeholder="Input Supir" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <br>
@@ -38,19 +38,20 @@
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                     </div>
                                 </form>
+
                                 @if ($message = Session::get('success'))
                                 <div class="alert alert-success">
                                     <p>{{ $message }}</p>
                                 </div>
                                 @endif
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">List Data Perkiraan</h4>
-                                    <table class="table table-bordered" id="get-dtprk">
+                                    <table class="table table-bordered" id="get-tarif">
                                         <thead>
                                             <tr>
-                                                <th>Kode Perkiraan</th>
-                                                <th>Nama Perkiraan</th>
-                                                <th>Jenis Perkiraan</th>
+                                                <th>Kode Tarif</th>
+                                                <th>Daerah</th>
+                                                <th>Tarif</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -66,19 +67,26 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="kd_perkiraan" id="kd_perkiraan">
-                                                <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">Nama Perkiraan</label>
+                                                <input type="hidden" name="kd_tarif" id="kd_tarif">
+                                                {{-- <div class="form-group">
+                                                    <label for="name" class="col-sm-2 control-label">Kode Daerah</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="nm_perkiraan" name="nm_perkiraan" placeholder="Input Nama Perkiraan" maxlength="50" required="">
+                                                        <input type="number" class="form-control" id="kd_tarif" name="kd_tarif" placeholder="Input Kode Daerah" maxlength="50" required="" >
+                                                    </div>
+                                                </div> --}}
+                                                <div class="form-group">
+                                                    <label for="name" class="col-sm-2 control-label">Daerah</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="text" class="form-control" id="daerah" name="daerah" placeholder="Input Daerah" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">Jenis Perkiraan</label>
+                                                    <label for="name" class="col-sm-2 control-label">Tarif Supir</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="jns_perkiraan" name="jns_perkiraan" placeholder="Input Jenis Perkiraan" maxlength="50" required="">
+                                                        <input type="text" class="form-control" id="tarif" name="tarif" placeholder="Input Supir" maxlength="50" required="">
                                                     </div>
                                                 </div>
+                                                <br>
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -91,9 +99,6 @@
                                 </div>
                             </div>
                             <!-- end bootstrap model -->
-
-
-
                         </div>
                         <!-- end table-responsive -->
                     </div>
@@ -124,6 +129,7 @@
 <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $.ajaxSetup({
@@ -133,22 +139,29 @@
         });
 
 
-        $('#get-dtprk').DataTable({
+        $('#get-tarif').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ url('get-dtprk') }}",
+            ajax: "{{ url('get-tarif') }}",
             columns: [{
-                    data: 'kd_perkiraan',
-                    name: 'kd_perkiraan'
+                    data: 'kd_tarif',
+                    name: 'kd_tarif'
                 },
                 {
-                    data: 'nm_perkiraan',
-                    name: 'nm_perkiraan'
+                    data: 'daerah',
+                    name: 'daerah'
                 },
                 {
-                    data: 'jns_perkiraan',
-                    name: 'jns_perkiraan'
+                    data: 'tarif',
+                    name: 'tarif'
                 },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false
+                },
+
+
             ],
             order: [
                 [0, 'desc']
@@ -156,21 +169,28 @@
         });
     });
 
-    function editFunc(kd_perkiraan) {
+    // function add() {
+    //     $('#CompanyForm').trigger("reset");
+    //     $('#CompanyModal').html("Isi Data Tarif");
+    //     $('#company-modal').modal('show');
+    //     $('#kd_tarif').val('');
+    // }
+
+    function editFunc(kd_tarif) {
         $.ajax({
             type: "POST",
-            url: "{{ url('edit-dtprk') }}",
+            url: "{{ url('edit-tarif') }}",
             data: {
-                kd_perkiraan: kd_perkiraan
+                kd_tarif: kd_tarif
             },
             dataType: 'json',
             success: function(res) {
                 console.log('edit res', res)
                 $('#CompanyModal').html("Edit Company");
                 $('#company-modal').modal('show');
-                $('#kd_perkiraan').val(res.kd_perkiraan);
-                $('#nm_perkiraan').val(res.nm_perkiraan);
-                $('#jns_perkiraan').val(res.jns_perkiraan);
+                $('#kd_tarif').val(res.kd_tarif);
+                $('#daerah').val(res.daerah);
+                $('#tarif').val(res.tarif);
 
             }
         });
@@ -179,15 +199,18 @@
     function deleteFunc(id) {
         if (confirm("Delete Record?") == true) {
             var id = id;
+            // console.log('delete',id)
+            // return false
+            // ajax
             $.ajax({
                 type: "POST",
-                url: "{{ url('delete-dtprk') }}",
+                url: "{{ url('delete-tarif') }}",
                 data: {
                     id: id
                 },
                 dataType: 'json',
                 success: function(res) {
-                    var oTable = $('#get-dtprk').dataTable();
+                    var oTable = $('#get-tarif').dataTable();
                     oTable.fnDraw(false);
                 }
             });
@@ -198,17 +221,18 @@
         e.preventDefault();
         var formData = new FormData(this);
         console.log('halo', formData)
+        // return false
 
         $.ajax({
             type: 'POST',
-            url: "{{ url('update-dtprk')}}",
+            url: "{{ url('update-tarif')}}",
             data: formData,
             cache: false,
             contentType: false,
             processData: false,
             success: (data) => {
                 $("#company-modal").modal('hide');
-                var oTable = $('#get-dtprk').dataTable();
+                var oTable = $('#get-tarif').dataTable();
                 oTable.fnDraw(false);
                 $("#btn-save").html('Submit');
                 $("#btn-save").attr("disabled", false);
@@ -218,21 +242,23 @@
             }
         });
     });
+
     $('#CompanyFormAdd').submit(function(e) {
         e.preventDefault();
         var formData = new FormData(this);
         console.log('halo', formData)
+        // return false
 
         $.ajax({
             type: 'POST',
-            url: "{{ url('store-dtprk')}}",
+            url: "{{ url('store-tarif')}}",
             data: formData,
             cache: false,
             contentType: false,
             processData: false,
             success: (data) => {
                 $("#company-modal").modal('hide');
-                var oTable = $('#get-dtprk').dataTable();
+                var oTable = $('#get-tarif').dataTable();
                 oTable.fnDraw(false);
                 $("#btn-save").html('Submit');
                 $("#btn-save").attr("disabled", false);

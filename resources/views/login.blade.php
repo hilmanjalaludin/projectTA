@@ -28,10 +28,10 @@
                                 <form action="{{url('post-login')}}" method="POST" id="logForm">
                                     {{ csrf_field() }}
                                     <div class="form-label-group">
-                                        <input type="text" name="nama_pengguna" id="inputEmail" class="form-control" placeholder="Nama">
-                                        <label for="inputEmail">Nama</label>
-                                        @if ($errors->has('nama_pengguna'))
-                                        <span class="error">{{ $errors->first('nama_pengguna') }}</span>
+                                        <input type="text" name="name" id="inputEmail" class="form-control" placeholder="Nama">
+                                        <label for="inputEmail">Username</label>
+                                        @if ($errors->has('name'))
+                                        <span class="error">{{ $errors->first('name') }}</span>
                                         @endif
                                     </div>
                                     <div class="form-label-group">
@@ -42,8 +42,8 @@
                                         @endif
                                     </div>
                                     <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Login</button>
-                                    <div class="text-center">Jika kamu tidak punya akun ?
-                                        <a class="small" href="{{url('registration')}}">Register</a>
+                                    <div class="text-center">Masukan Username dan password dengan benar ....
+                                        {{-- <a class="small" href="{{url('registration')}}">Register</a> --}}
                                     </div>
                                 </form>
                             </div>

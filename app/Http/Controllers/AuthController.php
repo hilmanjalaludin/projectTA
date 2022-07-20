@@ -25,23 +25,23 @@ class AuthController extends Controller
 
   public function postLogin(Request $request)
   {
-    // dd('halo');
+    // dd($request->name);
     request()->validate([
-      'nama_pengguna' => 'required',
+      'name' => 'required',
       'password' => 'required',
     ]);
-
-    $credentials = $request->only('nama_pengguna', 'password');
+    $credentials = $request->only('name', 'password');
     // dd(Auth::attempt($credentials));
-
+    
     if (Auth::attempt($credentials)) {
+      // dd('haloo'); 
       // Auth::login($credentials);
-      $data = DB::table('pengguna')
-        ->where('nama_pengguna', '=', Auth()->user()->nama_pengguna)
+      $data = DB::table('user')
+        ->where('name', '=', Auth()->user()->name)
         ->get();
-      $request->session()->put('nama_pengguna', Auth()->user()->nama_pengguna);
+      $request->session()->put('name', Auth()->user()->name);
       $request->session()->put('hak_akses', $data['0']->hak_akses);
-      $request->session()->put('id_pengguna', $data['0']->id_pengguna);
+      $request->session()->put('id_user', $data['0']->id_user);
       return redirect()->intended('dashboard');
     }
     return Redirect::to("login")->withSuccess('Login Gagal');
@@ -50,26 +50,26 @@ class AuthController extends Controller
   public function postRegistration(Request $request)
   {
     request()->validate([
-      'nama_pengguna' => 'required',
+      'name' => 'required',
       'password' => 'required|min:6',
     ]);
 
     $data = $request->all();
     // dd($data);
-    $blog = DB::table('pengguna')->insert([
-      'nama_pengguna' => $data['nama_pengguna'],
+    $blog = DB::table('user')->insert([
+      'name' => $data['name'],
       'password' => Hash::make($data['password'])
     ]);
 
     // $check = $this->create($data);
 
     if ($blog) {
-      $data = DB::table('pengguna')
-        ->where('nama_pengguna', '=', $request->nama_pengguna)
+      $data = DB::table('user')
+        ->where('name', '=', $request->name)
         ->get();
-      $request->session()->put('nama_pengguna', $request->nama_pengguna);
+      $request->session()->put('name', $request->name);
       $request->session()->put('hak_akses', $data['0']->hak_akses);
-      $request->session()->put('id_pengguna', $data['0']->id_pengguna);
+      $request->session()->put('id_user', $data['0']->id_user);
       return Redirect::to("login")->withSuccess('Selamat Nama anda sudah tersimpan');
     } else {
       return Redirect::to("registration")->withSuccess('Nama anda sudah ada');
@@ -78,17 +78,33 @@ class AuthController extends Controller
 
   public function dashboard()
   {
-    // dd(Auth::check());
-    // if (Auth::check()) {
     return view('dashboard');
-    // }
-    // return Redirect::to("login")->withSuccess('Opps! You do not have access');
+  }
+  
+  public function transaksi()
+  {
+    return view('transaksi');
+  }
+
+  public function laporan()
+  {
+    return view('laporan');
+  }
+  
+  public function pengaturan()
+  {
+    return view('pengaturan');
+  }
+  
+  public function about()
+  {
+    return view('about');
   }
 
   public function create(array $data)
   {
     return User::create([
-      'nama_pengguna' => $data['nama_pengguna'],
+      'name' => $data['name'],
       'password' => Hash::make($data['password'])
     ]);
   }

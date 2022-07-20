@@ -7,54 +7,30 @@
 
     <div class="page-content">
         <div class="container-fluid">
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Data Pengguna</h4>
-
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Data Pengguna</a></li>
-                                <li class="breadcrumb-item active">Data Pengguna</li>
-                            </ol>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- end page title -->
-
-            <!-- end row -->
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Data Pengguna</h4>
+                            <h4 class="card-title mb-4">Isi Data Penyewa</h4>
                             <div class="table-responsive">
-                                <div class="pull-right mb-2">
-                                    <a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Tambah</a>
-                                </div>
-
                                 @if ($message = Session::get('success'))
                                 <div class="alert alert-success">
                                     <p>{{ $message }}</p>
                                 </div>
                                 @endif
                                 <div class="card-body">
-                                    <table class="table table-bordered" id="get-dtpng">
+                                    <h4 class="card-title mb-4">Isi Data Penyewa</h4>
+                                    <table class="table table-bordered" id="get-sewa">
                                         <thead>
                                             <tr>
-                                                <th>Id User</th>
-                                                <th>Nama</th>
-                                                <th>Password</th>
-                                                <th>Hak akses</th>
-                                                <th>Nomor KTP</th>
-                                                <th>Jenis Kelamin</th>
-                                                <th>Alamat</th>
-                                                <th>No Telpon</th>
+                                                <th>Nomor Sewa</th>
+                                                <th>Tanggal Transaksi</th>
+                                                <th>Jumlah Mobil</th>
+                                                <th>Uang Muka</th>
+                                                <th>Kekurangan</th>
+                                                <th>Status Sewa</th>
+                                                <th>NIK</th>
+                                                <th>ID User</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -71,56 +47,63 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="id_user" id="id_user">
+                                                <input type="hidden" name="no_sewa" id="no_sewa">
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">Nama Pengguna</label>
+                                                    <label for="name" class="col-sm-2 control-label">Tanggal Transaksi</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="name" name="name" placeholder="Input Nama Pengguna" maxlength="50" required="">
+                                                        <input type="date" class="form-control" id="tgl_transaksi" name="tgl_transaksi" placeholder="Input Tanggal Transaksi" maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label class="col-sm-2 control-label">Password</label>
+                                                    <label for="name" class="col-sm-2 control-label">Jumlah Mobil</label>
                                                     <div class="col-sm-12">
-                                                        <input class="form-control" type="text" name="password" id="password" required>
+                                                        <input type="number" class="form-control" id="jml_mobil" name="jml_mobil" placeholder="Input Jumlah Mobil" maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">Hak Akses</label>
+                                                    <label for="name" class="col-sm-2 control-label">Uang Muka</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="hak_akses" name="hak_akses" placeholder="Input Hak Akses" maxlength="50" required="">
+                                                        <input type="number" class="form-control" id="dp" name="dp" placeholder="Input Uang Muka " maxlength="50" required="">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="name" class="col-sm-2 control-label">Kurang</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="number" class="form-control" id="kurang" name="kurang" placeholder="Input Kurang " maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">Nomor KTP</label>
+                                                    <label for="name" class="col-sm-2 control-label">Kekurangan</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="no_ktp" name="no_ktp" placeholder="Input No KTP" maxlength="50" required="">
+                                                        <input type="number" class="form-control" id="kurang" name="kurang" placeholder="Input Kekurangan " maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">Jenis Kelamin</label>
+                                                    <label for="name" class="col-sm-2 control-label">Status Sewa</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="jenkel" name="jenkel" placeholder="Input Jenis Kelamin" maxlength="50" required="">
+                                                        <input type="number" class="form-control" id="status_sewa" name="status_sewa" placeholder="Input Status Sewa " maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">Alamat</label>
+                                                    <label for="name" class="col-sm-2 control-label">NIK</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="almt" name="almt" placeholder="Input Alamat" maxlength="50" required="">
+                                                        <input type="number" class="form-control" id="nik" name="nik" placeholder="Input NIK " maxlength="50" required="">
                                                     </div>
                                                 </div>
-
+                                               
                                                 <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">No Telpon</label>
+                                                    <label for="name" class="col-sm-2 control-label">ID User</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="telpon" name="telpon" placeholder="Input Telpon" maxlength="50" required="">
+                                                        <input type="number" class="form-control" id="id_user" name="id_user" placeholder="Input ID User " maxlength="50" required="">
                                                     </div>
                                                 </div>
-
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -133,9 +116,6 @@
                                 </div>
                             </div>
                             <!-- end bootstrap model -->
-
-
-
                         </div>
                         <!-- end table-responsive -->
                     </div>
@@ -171,6 +151,7 @@
 <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
 <!-- App js -->
 <script src="{{ asset('assets/js/app.js') }}"></script>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $.ajaxSetup({
@@ -180,41 +161,41 @@
         });
 
 
-        $('#get-dtpng').DataTable({
+        $('#get-sewa').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ url('get-dtpng') }}",
+            ajax: "{{ url('get-sewa') }}",
             columns: [{
+                    data: 'no_sewa',
+                    name: 'no_sewa'
+                },
+                {
+                    data: 'tgl_transaksi',
+                    name: 'tgl_transaksi'
+                },
+                {
+                    data: 'jml_mobil',
+                    name: 'jml_mobil'
+                },
+                {
+                    data: 'dp',
+                    name: 'dp'
+                },
+                {
+                    data: 'kurang',
+                    name: 'kurang'
+                },
+                {
+                    data: 'status_sewa',
+                    name: 'status_sewa'
+                },
+                {
+                    data: 'nik',
+                    name: 'nik'
+                },
+                {
                     data: 'id_user',
                     name: 'id_user'
-                },
-                {
-                    data: 'name',
-                    name: 'name'
-                },
-                {
-                    data: 'password',
-                    name: 'password'
-                },
-                {
-                    data: 'hak_akses',
-                    name: 'hak_akses'
-                },
-                {
-                    data: 'no_ktp',
-                    name: 'no_ktp'
-                },
-                {
-                    data: 'jenkel',
-                    name: 'jenkel'
-                },
-                {
-                    data: 'telpon',
-                    name: 'telpon'
-                },
-                {
-                    data: 'almt',
-                    name: 'almt'
                 },
 
                 {
@@ -231,34 +212,60 @@
 
     function add() {
         $('#CompanyForm').trigger("reset");
-        $('#CompanyModal').html("Tambah Pengguna");
+        $('#CompanyModal').html("Tambah Data Sewa");
         $('#company-modal').modal('show');
-        $('#id_user').val('');
+        $('#no_sewa').val('');
     }
 
     // alert()
-    function editFunc(id_user) {
+    function editFunc(no_sewa) {
         // console.log('edit')
         // return false
         $.ajax({
             type: "POST",
-            url: "{{ url('edit-dtpng') }}",
+            url: "{{ url('edit-sewa') }}",
             data: {
-                id_user: id_user
+                no_sewa: no_sewa
             },
             dataType: 'json',
             success: function(res) {
                 console.log('edit res', res)
                 $('#CompanyModal').html("Edit Company");
                 $('#company-modal').modal('show');
+                $('#no_sewa').val(res.no_sewa);
+                $('#tgl_transaksi').val(res.tgl_transaksi);
+                $('#jml_mobil').val(res.jml_mobil);
+                $('#dp').val(res.dp);
+                $('#kurang').val(res.kurang);
+                $('#status_sewa').val(res.status_sewa);
+                $('#nik').val(res.nik);
                 $('#id_user').val(res.id_user);
-                $('#name').val(res.name);
-                $('#password').val(res.password);
-                $('#hak_akses').val(res.hak_akses);
-                $('#no_ktp').val(res.no_ktp);
-                $('#jenkel').val(res.jenkel);
-                $('#telpon').val(res.telpon);
-                $('#almt').val(res.almt);
+
+            }
+        });
+    }
+    function detailFunc(no_sewa) {
+        // console.log('edit')
+        // return false
+        $.ajax({
+            type: "GET",
+            url: "{{ url('detail-sewa') }}",
+            data: {
+                no_sewa: no_sewa
+            },
+            dataType: 'json',
+            success: function(res) {
+                console.log('edit res', res)
+                $('#CompanyModal').html("Edit Company");
+                $('#company-modal').modal('show');
+                $('#no_sewa').val(res.no_sewa);
+                $('#tgl_transaksi').val(res.tgl_transaksi);
+                $('#jml_mobil').val(res.jml_mobil);
+                $('#dp').val(res.dp);
+                $('#kurang').val(res.kurang);
+                $('#status_sewa').val(res.status_sewa);
+                $('#nik').val(res.nik);
+                $('#id_user').val(res.id_user);
 
             }
         });
@@ -272,13 +279,13 @@
             // ajax
             $.ajax({
                 type: "POST",
-                url: "{{ url('delete-dtpng') }}",
+                url: "{{ url('delete-sewa') }}",
                 data: {
                     id: id
                 },
                 dataType: 'json',
                 success: function(res) {
-                    var oTable = $('#get-dtpng').dataTable();
+                    var oTable = $('#get-sewa').dataTable();
                     oTable.fnDraw(false);
                 }
             });
@@ -293,14 +300,14 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{ url('store-dtpng')}}",
+            url: "{{ url('store-sewa')}}",
             data: formData,
             cache: false,
             contentType: false,
             processData: false,
             success: (data) => {
                 $("#company-modal").modal('hide');
-                var oTable = $('#get-dtpng').dataTable();
+                var oTable = $('#get-sewa').dataTable();
                 oTable.fnDraw(false);
                 $("#btn-save").html('Submit');
                 $("#btn-save").attr("disabled", false);
