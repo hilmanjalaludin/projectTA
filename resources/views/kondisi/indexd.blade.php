@@ -16,9 +16,9 @@
                                 <form action="javascript:void(0)" id="CompanyFormAdd" name="CompanyFormAdd" class="form-horizontal" method="POST" enctype="multipart/form-data">
                                     {{-- <input type="hidden" name="kd_kondisi" id="kd_kondisi"> --}}
                                     <div class="form-group">
-                                        <label for="name" class="col-sm-2 control-label">Kode Mobil</label>
+                                        <label for="name" class="col-sm-2 control-label">Kode Kondisi</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="kd_kondisi" placeholder="Input kode mobil" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="kd_kondisi" placeholder="Input kode Kondisi" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">

@@ -8,7 +8,7 @@ use Datatables;
 use App\Helpers\FlashMessages;
 use Illuminate\Support\Facades\DB;
 
-class LaporanjrController extends Controller
+class LaporanmstController extends Controller
 {
     public function index()
     {
@@ -16,7 +16,7 @@ class LaporanjrController extends Controller
                 ->Join('jurnal', 'user.id_user', '=', 'jurnal.id_user')
                 ->get('user.*');
                 // dd($tampil);
-        return view('lpjurnal.index', compact('tampil'));
+        return view('lpmst.index', compact('tampil'));
     }
 
     public function detail(Request $request)
@@ -24,12 +24,10 @@ class LaporanjrController extends Controller
         // dd($request);
         $tampil = DB::table('user')
         ->Join('jurnal', 'user.id_user', '=', 'jurnal.id_user')
-        ->Join('detail_jurnal', 'jurnal.no_jurnal', '=', 'detail_jurnal.no_jurnal')
-        ->Join('perkiraan', 'perkiraan.kd_perkiraan', '=', 'detail_jurnal.kd_perkiraan')
-        ->where('jurnal.no_jurnal', $request->no_jurnal)
+        ->where('jurnal.id_user', $request->id_user)
         ->get();
 
-        return view('lpjurnal.detail',compact('tampil'));
+        return view('lpmst.detail',compact('tampil'));
     }
 
 

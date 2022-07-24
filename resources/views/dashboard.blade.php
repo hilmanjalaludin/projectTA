@@ -8,7 +8,7 @@
 
     <div class="page-content">
         <div class="container-fluid">
-
+            @include('partials.messages')
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">

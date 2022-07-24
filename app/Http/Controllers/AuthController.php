@@ -42,9 +42,10 @@ class AuthController extends Controller
       $request->session()->put('name', Auth()->user()->name);
       $request->session()->put('hak_akses', $data['0']->hak_akses);
       $request->session()->put('id_user', $data['0']->id_user);
-      return redirect()->intended('dashboard');
+      $ses_user = Session::get('name');
+      return redirect()->intended('dashboard')->with('success','Selamat Datang User '.$ses_user);
     }
-    return Redirect::to("login")->withSuccess('Login Gagal');
+    return Redirect::to("login")->with('error','Login Gagal');
   }
 
   public function postRegistration(Request $request)
@@ -72,7 +73,7 @@ class AuthController extends Controller
       $request->session()->put('id_user', $data['0']->id_user);
       return Redirect::to("login")->withSuccess('Selamat Nama anda sudah tersimpan');
     } else {
-      return Redirect::to("registration")->withSuccess('Nama anda sudah ada');
+      return Redirect::to("registration")->with('error','Nama anda sudah ada');
     }
   }
 

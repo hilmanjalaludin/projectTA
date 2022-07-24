@@ -55,6 +55,7 @@
                                                 <th>Jenis Kelamin</th>
                                                 <th>Alamat</th>
                                                 <th>No Telpon</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -70,13 +71,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                {{-- <input type="hidden" name="id_user" id="id_user"> --}}
-                                                <div class="form-group">
-                                                    <label for="name" class="col-sm-2 control-label">ID User</label>
-                                                    <div class="col-sm-12">
-                                                        <input type="number" class="form-control" id="id_user" name="id_user" placeholder="Input ID User" maxlength="50" required="">
-                                                    </div>
-                                                </div>
+                                                <input type="hidden" name="id_user" id="id_user">
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Nama Pengguna</label>
                                                     <div class="col-sm-12">
@@ -94,28 +89,21 @@
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Hak Akses</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="hak_akses" name="hak_akses" value="supir" placeholder="Input Hak Akses" maxlength="50" required="" readonly>
+                                                        <input type="text" class="form-control" id="hak_akses" name="hak_akses" placeholder="Input Hak Akses" maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Nomor KTP</label>
                                                     <div class="col-sm-12">
-                                                        <input type="number" class="form-control" id="no_ktp" name="no_ktp" placeholder="Input No KTP" maxlength="50" required="">
+                                                        <input type="text" class="form-control" id="no_ktp" name="no_ktp" placeholder="Input No KTP" maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Jenis Kelamin</label>
                                                     <div class="col-sm-12">
-                                                        {{-- <input type="text" class="form-control" id="jenkel" name="jenkel" placeholder="Input Jenis Kelamin" maxlength="50" required=""> --}}
-                                                        <select class="form-control m-bot15" name="jenkel" id="jenkel" required="">
-                                                            <option value="">Choose</option>
-                                                            <option value="PRIA">
-                                                                PRIA </option>
-                                                             <option value="WANITA">
-                                                                  WANITA</option>
-                                                        </select>
+                                                        <input type="text" class="form-control" id="jenkel" name="jenkel" placeholder="Input Jenis Kelamin" maxlength="50" required="">
                                                     </div>
                                                 </div>
 
@@ -227,6 +215,12 @@
                 {
                     data: 'almt',
                     name: 'almt'
+                },
+
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false
                 },
             ],
             order: [

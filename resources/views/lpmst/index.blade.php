@@ -22,20 +22,22 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Laporan Jurnal</h4>
+                            <h4 class="card-title mb-4">Laporan Master</h4>
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('lpjr.post') }}" >
+                                    <form method="POST" action="{{ route('lpmst.post') }}" >
                                         @csrf 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Jurnal</label>
+                                            <label class="col-sm-2 control-label">Data Master</label>
                                             <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label for="name" class="col-sm-6 control-label">No jurnal</label>
-                                                    <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="no_jurnal" placeholder="Input No Jurnal" maxlength="50" required="">
-                                                    </div>
-                                                </div>
+                                                <select class="form-control m-bot15" name="id_user">
+                                                    <option value="">Choose</option>
+                                                    <?php foreach ($tampil as $value) : ?>
+                                                       <option  value='<?php echo $value->id_user; ?>'>
+                                                          <?php echo $value->name;  ?>
+                                                       </option>
+                                                    <?php endforeach; ?>
+                                                 </select>
           
                                             </div>
                                         </div>

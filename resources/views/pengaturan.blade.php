@@ -75,7 +75,8 @@
                             </a>    
                         </div>
                         <div class="col-md-6">
-                            <a href="{{url('logout')}}" >
+                            {{-- <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->nik . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger" >Delete</a> --}}
+                            <a href="javascript:void(0);" onclick="deleteFunc(' . $data->nik . ')" data-toggle="tooltip" data-original-title="Delete" >
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
@@ -125,7 +126,20 @@
     <script src="{{ asset('assets/js/pages/dashboard.init.js') }}"></script>
     <!-- App js -->
     <script src="{{ asset('assets/js/app.js') }}"></script>
-
+    <script type="text/javascript">
+        function deleteFunc() {
+            // window.alert('Anda ingin Logout');
+            // window.location.href='{{url('logout')}}';
+            if(confirm("Anda ingin Logout")){ 
+                    /* user clicked "OK" */ 
+                    location.href ='{{url('logout')}}';
+                } 
+                else { 
+                    /* User clicked "Cancel" */
+                    location.href ='{{url('pengaturan')}}';
+                }
+            }
+    </script>
     </body>
 
     </html>

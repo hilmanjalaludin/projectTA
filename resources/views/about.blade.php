@@ -49,14 +49,13 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="row">
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <a href="{{ route('ttkm.index') }}" >
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
                                             <div class="flex-grow-1">
                                                 <h2 class="text-muted fw-medium">Tentang Kami</h2>
-                                                {{-- <h4 class="mb-0">1,235</h4> --}}
                                             </div>
 
                                             <div class="flex-shrink-0 align-self-center">
@@ -70,7 +69,7 @@
                                     </div>
                                 </div>
                             </a>    
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <a href="{{ route('ktt.index') }}" >
                                 <div class="card mini-stats-wid">

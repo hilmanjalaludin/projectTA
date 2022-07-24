@@ -22,21 +22,21 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Laporan Jurnal</h4>
+                            <h4 class="card-title mb-4">Laporan Transaksi Penyewaan</h4>
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('lpjr.post') }}" >
+                                    <form method="POST" action="{{ route('lppny.post') }}" >
                                         @csrf 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Jurnal</label>
+                                            <label class="col-sm-2 control-label">Tanggal Awal</label>
                                             <div class="col-sm-4">
-                                                <div class="form-group">
-                                                    <label for="name" class="col-sm-6 control-label">No jurnal</label>
-                                                    <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="no_jurnal" placeholder="Input No Jurnal" maxlength="50" required="">
-                                                    </div>
-                                                </div>
-          
+                                                <input class="form-control " name="tglaw" type="date" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Tanggal Akhir</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-control " name="tglak" type="date" >
                                             </div>
                                         </div>
                                        

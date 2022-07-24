@@ -17,63 +17,48 @@
                                 @if ($message = Session::get('success'))
                                 <div class="alert alert-success">
                                     <p>{{ $message }}</p>
-                                </div>
+                                </div>                               
+                                @endif
+                                @if ($message = Session::get('error'))
+                                <div class="alert alert-danger">
+                                    <p>{{ $message }}</p>
+                                </div>                               
                                 @endif
                                 <div class="card-body">
-                                    <form action="" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                        <input type="hidden" name="id_user" value="{{$company->id_user}}">
+                                    <form method="POST" action="{{ route('dtpng.update') }}" >
+                                        @csrf
+                                        
                                         <div class="form-group">
-                                            <label for="name" class="col-sm-2 control-label">Nama Pengguna</label>
+                                            <label for="name" class="col-sm-2 control-label">ID User</label>
                                             <div class="col-sm-12">
-                                                <input type="text" class="form-control" value="{{$company->name}}" name="name" placeholder="Input Nama Pengguna" maxlength="50" required="">
+                                                <input class="form-control" type="text" name="id_user" value="{{$company->id_user}}" readonly>
                                             </div>
                                         </div>
+                                       
 
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label">Password</label>
+                                            <label class="col-sm-2 control-label">Password Lama</label>
                                             <div class="col-sm-12">
-                                                <input class="form-control" type="text" name="password" value="{{$company->password}}" required>
+                                                <input class="form-control" type="text" name="password" required>
                                             </div>
                                         </div>
-
                                         <div class="form-group">
-                                            <label for="name" class="col-sm-2 control-label">Hak Akses</label>
+                                            <label class="col-sm-2 control-label">Password Baru</label>
                                             <div class="col-sm-12">
-                                                <input type="text" class="form-control" value="{{$company->hak_akses}}" name="hak_akses" placeholder="Input Hak Akses" maxlength="50" required="">
+                                                <input class="form-control" type="text" name="new_password" required>
                                             </div>
                                         </div>
-
                                         <div class="form-group">
-                                            <label for="name" class="col-sm-2 control-label">Nomor KTP</label>
+                                            <label class="col-sm-2 control-label">Ulangi Password</label>
                                             <div class="col-sm-12">
-                                                <input type="text" class="form-control" value="{{$company->no_ktp}}" name="no_ktp" placeholder="Input No KTP" maxlength="50" required="">
+                                                <input class="form-control" type="text" name="confirm_password" required>
                                             </div>
                                         </div>
-
-                                        <div class="form-group">
-                                            <label for="name" class="col-sm-2 control-label">Jenis Kelamin</label>
-                                            <div class="col-sm-12">
-                                                <input type="text" class="form-control" value="{{$company->jenkel}}" name="jenkel" placeholder="Input Jenis Kelamin" maxlength="50" required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="name" class="col-sm-2 control-label">Alamat</label>
-                                            <div class="col-sm-12">
-                                                <input type="text" class="form-control" value="{{$company->almt}}" name="almt" placeholder="Input Alamat" maxlength="50" required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="name" class="col-sm-2 control-label">No Telpon</label>
-                                            <div class="col-sm-12">
-                                                <input type="text" class="form-control" value="{{$company->telpon}}" name="telpon" placeholder="Input Telpon" maxlength="50" required="">
-                                            </div>
-                                        </div>
-
+                                       
+                                        <br>
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                            <button type="submit" class="btn btn-primary" >Simpan</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
                                         </div>
                                     </form>
                                                

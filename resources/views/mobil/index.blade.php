@@ -27,7 +27,7 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Jenis Mobil</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control"  name="jenis" placeholder="Input jenis Mobil" maxlength="50" required="">
+                                            <input type="text" class="form-control"  name="jenis" placeholder="Input jenis Mobil" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -82,9 +82,16 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Status</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="status" placeholder="Input Status" maxlength="50" required="">
-                                        </div>
+                                            <select class="form-control m-bot15" name="status" required="">
+                                                <option value="">Choose</option>
+                                                <option value="TERSEDIA">
+                                                    TERSEDIA </option>
+                                                 <option value="TIDAK TERSEDIA">
+                                                      TIDAK TERSEDIA</option>
+                                            </select>
+                                        </div>                                        
                                     </div>
+                                    <br>
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

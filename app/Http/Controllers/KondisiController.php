@@ -14,6 +14,7 @@ class KondisiController extends Controller
     public function index()
     {
         if (request()->ajax()) {
+            
             $data = Kondisi::select('*');
             if (Session::get('hak_akses') == 'direktur') {
             return datatables()->of($data)
@@ -31,15 +32,27 @@ class KondisiController extends Controller
             }
         }
         if (Session::get('hak_akses') == 'direktur') {
-        return view('kondisi.indexd');
+        return view('kondisi.indexd', compact('mobil'));
         }
-        return view('kondisi.index');
+        $mobil = DB::table('mobil')
+            ->get();
+        return view('kondisi.index', compact('mobil'));
     }
 
 
     
     public function store(Request $request)
     {
+        DB::table('mobil')
+        ->where('kd_mobil', $request->kd_mobil)
+        ->update(
+            [
+                'kd_mobil' => $request->kd_mobil,
+                'jenis' => $request->jenis,
+                'no_polisi' => $request->no_polisi,
+                'biaya' => $request->biaya,
+            ]
+        );
             $company = Kondisi::insert(
                 [
                     'kd_kondisi' => $request->kd_kondisi,

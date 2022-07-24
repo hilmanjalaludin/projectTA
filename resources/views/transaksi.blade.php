@@ -8,28 +8,6 @@
 
     <div class="page-content">
         <div class="container-fluid">
-
-            <!-- start page title -->
-            <div class="row">
-                <div class="col-12">
-                    <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                        <h4 class="mb-sm-0 font-size-18">Transaksi</h4>
-
-                        <div class="page-title-right">
-                            <ol class="breadcrumb m-0">
-                                <li class="breadcrumb-item"><a href="javascript: void(0);">Transaksi</a></li>
-                                <li class="breadcrumb-item active">Transaksi</li>
-                            </ol>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- end page title -->
-
-            <!-- end row -->
-
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -47,7 +25,7 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <a href="{{ route('dtpng.index') }}" >
+                    <a href="{{ route('trspny.index') }}" >
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -69,7 +47,7 @@
                     </a>    
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('tarif.index') }}" >
+                    <a href="{{ route('trspengem.index') }}" >
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -91,7 +69,7 @@
                     </a>    
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('mobil.index') }}" >
+                    <a href="{{ route('trsjurnal.index') }}" >
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">

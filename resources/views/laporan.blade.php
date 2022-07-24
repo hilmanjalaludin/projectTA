@@ -50,7 +50,7 @@
                 <div class="col-md-8">
                         <div class="row">
                         <div class="col-md-6">
-                            <a href="{{ route('dtpng.index') }}" >
+                            <a href="{{ route('lppny.index') }}" >
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
@@ -72,7 +72,7 @@
                             </a>    
                         </div>
                         <div class="col-md-6">
-                            <a href="{{ route('tarif.index') }}" >
+                            <a href="{{ route('lppengem.index') }}" >
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
@@ -94,7 +94,7 @@
                             </a>    
                         </div>
                         <div class="col-md-6">
-                            <a href="{{ route('mobil.index') }}" >
+                            <a href="{{ route('lpmst.index') }}" >
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">
@@ -116,7 +116,7 @@
                             </a>    
                         </div>
                         <div class="col-md-6">
-                            <a href="{{ route('kondisi.index') }}" >
+                            <a href="{{ route('lpjr.index') }}" >
                                 <div class="card mini-stats-wid">
                                     <div class="card-body">
                                         <div class="d-flex">

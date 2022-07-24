@@ -25,6 +25,17 @@
                             <div class="col-md-9 col-lg-8 mx-auto">
                                 <h3 class="login-heading mb-4">Silahkan Login</h3>
                                 @include('partials.messages')
+                                {{-- @if ($message = Session::get('success'))
+                                <div class="alert alert-success">
+                                    <p>{{ $message }}</p>
+                                </div>                               
+                                @endif
+                                @if ($message = Session::get('error'))
+                                <div class="alert alert-danger">
+                                    <p>{{ $message }}</p>
+                                </div>                               
+                                @endif --}}
+                                
                                 <form action="{{url('post-login')}}" method="POST" id="logForm">
                                     {{ csrf_field() }}
                                     <div class="form-label-group">
