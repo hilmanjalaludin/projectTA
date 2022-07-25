@@ -18,30 +18,30 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Kondisi</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="kd_kondisi" placeholder="Input kode Kondisi" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="kd_kondisi" placeholder="Input kode Kondisi" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Mobil</label>
-                                        
-                                       
+
+
                                         <div class="col-sm-12">
                                             {{-- <input type="number" class="form-control" name="kd_mobil" placeholder="Input kode mobil" maxlength="50" required=""> --}}
                                             <select class="form-control m-bot15" name="kd_mobil">
                                                 <option value="">Choose</option>
                                                 <?php foreach ($mobil as $value) : ?>
-                                                   <option  value='<?php echo $value->kd_mobil; ?>'>
-                                                      <?php echo $value->kd_mobil;  ?>
-                                                   </option>
+                                                    <option value='<?php echo $value->kd_mobil; ?>'>
+                                                        <?php echo $value->kd_mobil;  ?>
+                                                    </option>
                                                 <?php endforeach; ?>
-                                             </select>
+                                            </select>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Jenis</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="jenis" placeholder="Input Jenis" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="jenis" placeholder="Input Jenis" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -56,11 +56,11 @@
                                             <input type="number" class="form-control" name="biaya" placeholder="Input Biaya" maxlength="50" required="">
                                         </div>
                                     </div>
-                                   
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Bensin</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="bensin" placeholder="Input Bensin" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="bensin" placeholder="Input Bensin" maxlength="50" required="">
                                         </div>
                                     </div>
 
@@ -84,14 +84,14 @@
                                             <input type="text" class="form-control" name="belakang" placeholder="Input Belakang" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kanan</label>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control" name="kanan" placeholder="Input Kanan" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kiri</label>
                                         <div class="col-sm-12">
@@ -109,7 +109,7 @@
                                     <p>{{ $message }}</p>
                                 </div>
                                 @endif
-                                
+
                                 <div class="card-body">
                                     <h4 class="card-title mb-4">List Data Kondisi Mobil</h4>
                                     <table class="table table-bordered" id="get-kondisi">
@@ -171,21 +171,21 @@
                                                         <input type="text" class="form-control" id="belakang" name="belakang" placeholder="Input Belakang" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Kanan</label>
                                                     <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="kanan" name="kanan" placeholder="Input Kanan" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Kiri</label>
                                                     <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="kiri" name="kiri" placeholder="Input Kiri" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

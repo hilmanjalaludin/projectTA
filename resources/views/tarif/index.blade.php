@@ -17,19 +17,19 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Daerah</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control"  name="kd_tarif" placeholder="Input Kode Daerah" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="kd_tarif" placeholder="Input Kode Daerah" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Daerah</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="daerah" placeholder="Input Daerah" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="daerah" placeholder="Input Daerah" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Tarif Supir</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="tarif" placeholder="Input Supir" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="tarif" placeholder="Input Supir" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <br>
@@ -51,9 +51,11 @@
                                                 <th>Kode Tarif</th>
                                                 <th>Daerah</th>
                                                 <th>Tarif</th>
-                                               <?php  //if (Session::get('hak_akses') == 'direktur') { ?>
+                                                <?php  //if (Session::get('hak_akses') == 'direktur') { 
+                                                ?>
                                                 {{-- <th>Action</th> --}}
-                                                <?php //} ?>
+                                                <?php //} 
+                                                ?>
                                             </tr>
                                         </thead>
                                     </table>

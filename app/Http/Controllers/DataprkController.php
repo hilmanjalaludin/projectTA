@@ -8,6 +8,7 @@ use Datatables;
 use App\Helpers\FlashMessages;
 use Illuminate\Support\Facades\DB;
 use Session;
+
 class DataprkController extends Controller
 {
     public function index()
@@ -15,24 +16,24 @@ class DataprkController extends Controller
         if (request()->ajax()) {
             $data = DataPrk::select('*');
             if (Session::get('hak_akses') == 'direktur') {
-            return datatables()->of($data)
-                // ->addColumn('action', 'company-action')
-
-                ->addColumn('action', function ($data) {
-                    $button = '<a href="javascript:void(0)" data-toggle="tooltip" onclick="editFunc(' . $data->kd_perkiraan . ' )" data-original-title="Edit" class="edit btn btn-primary edit" >Edit</a>';
-                    $button .= '&nbsp; <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->kd_perkiraan . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger" >Delete</a>';
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->addIndexColumn()
-                ->make(true);
-            }else {
                 return datatables()->of($data)
-                ->make(true);
+                    // ->addColumn('action', 'company-action')
+
+                    ->addColumn('action', function ($data) {
+                        $button = '<a href="javascript:void(0)" data-toggle="tooltip" id="' . $data->kd_perkiraan . '" onclick="editFunc(event)" data-original-title="Edit" class="edit btn btn-primary edit" >Edit</a>';
+                        $button .= '&nbsp; <a href="javascript:void(0);" id="' . $data->kd_perkiraan . '" onclick="deleteFunc(event)" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger" >Delete</a>';
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->addIndexColumn()
+                    ->make(true);
+            } else {
+                return datatables()->of($data)
+                    ->make(true);
             }
         }
         if (Session::get('hak_akses') == 'direktur') {
-        return view('dtprk.indexd');
+            return view('dtprk.indexd');
         }
         return view('dtprk.index');
     }
@@ -46,7 +47,23 @@ class DataprkController extends Controller
      */
     public function store(Request $request)
     {
-            $company = DataPrk::insert(
+        $company = DataPrk::insert(
+            [
+                'kd_perkiraan' => $request->kd_perkiraan,
+                'jns_perkiraan' => $request->jns_perkiraan,
+                'nm_perkiraan' => $request->nm_perkiraan,
+
+            ]
+        );
+
+        return Response()->json($company);
+    }
+    public function update(Request $request)
+    {
+        $companyId = $request->kd_perkiraan;
+        $company = DB::table('perkiraan')
+            ->where('kd_perkiraan', $request->kd_perkiraan_a)
+            ->update(
                 [
                     'kd_perkiraan' => $request->kd_perkiraan,
                     'jns_perkiraan' => $request->jns_perkiraan,
@@ -54,22 +71,7 @@ class DataprkController extends Controller
 
                 ]
             );
-       
-        return Response()->json($company);
-    }
-    public function update(Request $request)
-    {
-        $companyId = $request->kd_perkiraan;
-            $company = DB::table('perkiraan')
-                ->where('kd_perkiraan', $companyId)
-                ->update(
-                    [
-                        'jns_perkiraan' => $request->jns_perkiraan,
-                        'nm_perkiraan' => $request->nm_perkiraan,
 
-                    ]
-                );
-       
         return Response()->json($company);
     }
 

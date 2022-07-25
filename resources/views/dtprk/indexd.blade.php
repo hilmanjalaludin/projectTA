@@ -17,7 +17,7 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Perkiraan</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="kd_perkiraan" placeholder="Input Kode Perkiraan" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="kd_perkiraan" placeholder="Input Kode Perkiraan" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -67,7 +67,13 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="kd_perkiraan" id="kd_perkiraan">
+                                                <input type="hidden" name="kd_perkiraan_a" id="kd_perkiraan_a">
+                                                <div class="form-group">
+                                                    <label for="name" class="col-sm-2 control-label">Kode Perkiraan</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="text" class="form-control" id="kd_perkiraan" name="kd_perkiraan" placeholder="Input Kode Perkiraan" maxlength="50" required="">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Nama Perkiraan</label>
                                                     <div class="col-sm-12">
@@ -163,7 +169,9 @@
         });
     });
 
-    function editFunc(kd_perkiraan) {
+    function editFunc(ev) {
+        ev.preventDefault();
+        var kd_perkiraan = ev.currentTarget.getAttribute('id');
         $.ajax({
             type: "POST",
             url: "{{ url('edit-dtprk') }}",
@@ -175,6 +183,7 @@
                 console.log('edit res', res)
                 $('#CompanyModal').html("Edit Company");
                 $('#company-modal').modal('show');
+                $('#kd_perkiraan_a').val(res.kd_perkiraan);
                 $('#kd_perkiraan').val(res.kd_perkiraan);
                 $('#nm_perkiraan').val(res.nm_perkiraan);
                 $('#jns_perkiraan').val(res.jns_perkiraan);
@@ -183,7 +192,9 @@
         });
     }
 
-    function deleteFunc(id) {
+    function deleteFunc(ev) {
+        ev.preventDefault();
+        var id = ev.currentTarget.getAttribute('id');
         if (confirm("Delete Record?") == true) {
             var id = id;
             $.ajax({

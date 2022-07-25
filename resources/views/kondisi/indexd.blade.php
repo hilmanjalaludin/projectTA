@@ -14,23 +14,31 @@
                             <h4 class="card-title mb-4">Isi Data Kondisi Mobil</h4>
                             <div class="table-responsive">
                                 <form action="javascript:void(0)" id="CompanyFormAdd" name="CompanyFormAdd" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                    {{-- <input type="hidden" name="kd_kondisi" id="kd_kondisi"> --}}
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Kondisi</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="kd_kondisi" placeholder="Input kode Kondisi" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="kd_kondisi" placeholder="Input kode Kondisi" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Mobil</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="kd_mobil" placeholder="Input kode mobil" maxlength="50" required="">
+                                            <!-- <input type="number" class="form-control" name="kd_mobil" placeholder="Input kode mobil" maxlength="50" required=""> -->
+                                            <select class="form-control m-bot15" name="kd_mobil">
+                                                <option value="">Choose</option>
+                                                <?php foreach ($mobil as $value) : ?>
+                                                    <option value='<?php echo $value->kd_mobil; ?>'>
+                                                        <?php echo $value->kd_mobil;  ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Bensin</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="bensin" placeholder="Input Bensin" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="bensin" placeholder="Input Bensin" maxlength="50" required="">
                                         </div>
                                     </div>
 
@@ -54,14 +62,14 @@
                                             <input type="text" class="form-control" name="belakang" placeholder="Input Belakang" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kanan</label>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control" name="kanan" placeholder="Input Kanan" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kiri</label>
                                         <div class="col-sm-12">
@@ -79,7 +87,7 @@
                                     <p>{{ $message }}</p>
                                 </div>
                                 @endif
-                                
+
                                 <div class="card-body">
                                     <h4 class="card-title mb-4">List Data Kondisi Mobil</h4>
                                     <table class="table table-bordered" id="get-kondisi">
@@ -108,17 +116,31 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="kd_kondisi" id="kd_kondisi">
+                                                <input type="hidden" name="kd_kondisi_a" id="kd_kondisi_a">
+                                                <div class="form-group">
+                                                    <label for="name" class="col-sm-2 control-label">Kode Kondisi</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="text" class="form-control" name="kd_kondisi" id="kd_kondisi" placeholder="Input kode Kondisi" maxlength="50" required="">
+                                                    </div>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Kode Mobil</label>
                                                     <div class="col-sm-12">
-                                                        <input type="number" class="form-control" id="kd_mobil" name="kd_mobil" placeholder="Input kode mobil" maxlength="50" required="">
+                                                        <!-- <input type="text" class="form-control" id="kd_mobil" name="kd_mobil" placeholder="Input kode mobil" maxlength="50" required=""> -->
+                                                        <select class="form-control m-bot15" name="kd_mobil">
+                                                            <option value="">Choose</option>
+                                                            <?php foreach ($mobil as $v) : ?>
+                                                                <option value='<?php echo $v->kd_mobil; ?>'>
+                                                                    <?php echo $v->kd_mobil;  ?>
+                                                                </option>
+                                                            <?php endforeach; ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Bensin</label>
                                                     <div class="col-sm-12">
-                                                        <input type="number" class="form-control" id="bensin" name="bensin" placeholder="Input Bensin" maxlength="50" required="">
+                                                        <input type="text" class="form-control" id="bensin" name="bensin" placeholder="Input Bensin" maxlength="50" required="">
                                                     </div>
                                                 </div>
 
@@ -142,21 +164,21 @@
                                                         <input type="text" class="form-control" id="belakang" name="belakang" placeholder="Input Belakang" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Kanan</label>
                                                     <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="kanan" name="kanan" placeholder="Input Kanan" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Kiri</label>
                                                     <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="kiri" name="kiri" placeholder="Input Kiri" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
@@ -256,7 +278,10 @@
     });
 
 
-    function editFunc(kd_kondisi) {
+    function editFunc(ev) {
+        ev.preventDefault();
+        var kd_kondisi = ev.currentTarget.getAttribute('id');
+
         $.ajax({
             type: "POST",
             url: "{{ url('edit-kondisi') }}",
@@ -268,6 +293,7 @@
                 console.log('edit res', res)
                 $('#CompanyModal').html("Edit Company");
                 $('#company-modal').modal('show');
+                $('#kd_kondisi_a').val(res.kd_kondisi);
                 $('#kd_kondisi').val(res.kd_kondisi);
                 $('#kd_mobil').val(res.kd_mobil);
                 $('#bensin').val(res.bensin);
@@ -281,7 +307,9 @@
         });
     }
 
-    function deleteFunc(id) {
+    function deleteFunc(ev) {
+        ev.preventDefault();
+        var id = ev.currentTarget.getAttribute('id');
         if (confirm("Delete Record?") == true) {
             var id = id;
             $.ajax({

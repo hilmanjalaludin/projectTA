@@ -10,32 +10,33 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Validator, Redirect, Response;
 use Session;
+
 class DatapngController extends Controller
 {
     public function index()
     {
         if (request()->ajax()) {
-            $data = DataPng::where('hak_akses','!=','direktur')
-                    ->select('*');
+            $data = DataPng::where('hak_akses', '!=', 'direktur')
+                ->select('*');
             if (Session::get('hak_akses') == 'direktur') {
-            return datatables()->of($data)
-                // ->addColumn('action', 'company-action')
-
-                ->addColumn('action', function ($data) {
-                    $button = '<a href="javascript:void(0)" data-toggle="tooltip" onclick="editFunc(' . $data->id_user . ' )" data-original-title="Edit" class="edit btn btn-primary edit">Edit</a>';
-                    $button .= '&nbsp; <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->id_user . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger">Delete</a>';
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->addIndexColumn()
-                ->make(true);
-            }else {
                 return datatables()->of($data)
-                ->make(true);
+                    // ->addColumn('action', 'company-action')
+
+                    ->addColumn('action', function ($data) {
+                        $button = '<a href="javascript:void(0)" data-toggle="tooltip" id="' . $data->id_user . '" onclick="editFunc(event)" data-original-title="Edit" class="edit btn btn-primary edit">Edit</a>';
+                        $button .= '&nbsp; <a href="javascript:void(0);" id="' . $data->id_user . '" onclick="deleteFunc(event)" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger">Delete</a>';
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->addIndexColumn()
+                    ->make(true);
+            } else {
+                return datatables()->of($data)
+                    ->make(true);
             }
         }
         if (Session::get('hak_akses') == 'direktur') {
-        return view('dtpng.indexd');
+            return view('dtpng.indexd');
         }
         return view('dtpng.index');
     }
@@ -51,10 +52,10 @@ class DatapngController extends Controller
     {
         $companyId = $request->id_user;
         // if ($request->id_user == '') {
-            $tampil = DB::table('user')
+        $tampil = DB::table('user')
             ->where('user.id_user', $request->id_user)
             ->count();
-          
+
         // }
         // dd($request->id_user);
         // dd($companyId != $tampil->id_user);
@@ -73,13 +74,12 @@ class DatapngController extends Controller
                 ]
             );
         } else {
-            $tampil = DB::table('user')
-            ->where('user.id_user', $request->id_user)
-            ->first();
+
             $company = DB::table('user')
-                ->where('id_user', $tampil->id_user)
+                ->where('id_user', $request->id_user)
                 ->update(
                     [
+                        'id_user' => $request->id_user,
                         'name' => $request->name,
                         'password' => $request->password,
                         'hak_akses' => $request->hak_akses,
@@ -108,33 +108,33 @@ class DatapngController extends Controller
         // dd($companyId);
         $pass = Hash::make($request->password);
         $company = DB::table('user')
-                ->where('id_user', $companyId)
-                ->first();
+            ->where('id_user', $companyId)
+            ->first();
         // dd($company->password);
         if (!Hash::check($request->password, $company->password)) {
-             return redirect()->back()->with('error','Password lama salah');
+            return redirect()->back()->with('error', 'Password lama salah');
         }
         // dd($request);
 
         if ($request->new_password != $request->confirm_password) {
-             return redirect()->back()->with('error','Ulangi Password tidak sama');
+            return redirect()->back()->with('error', 'Ulangi Password tidak sama');
         }
 
         $new_pass = Hash::make($request->new_password);
         $companyId = $request->id_user;
         $company = DB::table('user')
-                ->where('id_user', $companyId)
-                ->update(
-                    [
-                        'password' => $new_pass,
-                        // 'name' => $request->name,
-                        // 'hak_akses' => $request->hak_akses,
-                        // 'no_ktp' => $request->no_ktp,
-                        // 'jenkel' => $request->jenkel,
-                        // 'telpon' => $request->telpon,
-                        // 'almt' => $request->almt,
-                    ]
-                );
+            ->where('id_user', $companyId)
+            ->update(
+                [
+                    'password' => $new_pass,
+                    // 'name' => $request->name,
+                    // 'hak_akses' => $request->hak_akses,
+                    // 'no_ktp' => $request->no_ktp,
+                    // 'jenkel' => $request->jenkel,
+                    // 'telpon' => $request->telpon,
+                    // 'almt' => $request->almt,
+                ]
+            );
         return redirect()->back()->withSuccess('Password berhasil dirubah');
     }
 
@@ -148,8 +148,8 @@ class DatapngController extends Controller
 
         return Response()->json($company);
     }
-    
-    public function detail( $id)
+
+    public function detail($id)
     {
         // dd($id);
         // die;
@@ -158,7 +158,7 @@ class DatapngController extends Controller
         // dd($company);
 
         // return Response()->json($company);
-        return view('dtpng.detail',compact('company'));
+        return view('dtpng.detail', compact('company'));
     }
 
 

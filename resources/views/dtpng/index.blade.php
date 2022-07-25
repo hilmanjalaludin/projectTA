@@ -53,8 +53,8 @@
                                                 <th>Hak akses</th>
                                                 <th>Nomor KTP</th>
                                                 <th>Jenis Kelamin</th>
-                                                <th>Alamat</th>
                                                 <th>No Telpon</th>
+                                                <th>Alamat</th>
                                             </tr>
                                         </thead>
                                     </table>
@@ -70,11 +70,10 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                {{-- <input type="hidden" name="id_user" id="id_user"> --}}
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">ID User</label>
                                                     <div class="col-sm-12">
-                                                        <input type="number" class="form-control" id="id_user" name="id_user" placeholder="Input ID User" maxlength="50" required="">
+                                                        <input type="text" class="form-control" id="id_user" name="id_user" placeholder="Input ID User" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -108,13 +107,13 @@
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Jenis Kelamin</label>
                                                     <div class="col-sm-12">
-                                                        {{-- <input type="text" class="form-control" id="jenkel" name="jenkel" placeholder="Input Jenis Kelamin" maxlength="50" required=""> --}}
+                                                        <!-- {{-- <input type="text" class="form-control" id="jenkel" name="jenkel" placeholder="Input Jenis Kelamin" maxlength="50" required=""> --}} -->
                                                         <select class="form-control m-bot15" name="jenkel" id="jenkel" required="">
                                                             <option value="">Choose</option>
                                                             <option value="PRIA">
                                                                 PRIA </option>
-                                                             <option value="WANITA">
-                                                                  WANITA</option>
+                                                            <option value="WANITA">
+                                                                WANITA</option>
                                                         </select>
                                                     </div>
                                                 </div>

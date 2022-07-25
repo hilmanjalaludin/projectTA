@@ -17,19 +17,19 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Daerah</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control"  name="kd_tarif" placeholder="Input Kode Daerah" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="kd_tarif" placeholder="Input Kode Daerah" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Daerah</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="daerah" placeholder="Input Daerah" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="daerah" placeholder="Input Daerah" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Tarif Supir</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="tarif" placeholder="Input Supir" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="tarif" placeholder="Input Supir" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <br>
@@ -67,13 +67,13 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="kd_tarif" id="kd_tarif">
-                                                {{-- <div class="form-group">
+                                                <input type="hidden" class="form-control" id="kd_tarif_a" name="kd_tarif_a" required="">
+                                                <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Kode Daerah</label>
                                                     <div class="col-sm-12">
-                                                        <input type="number" class="form-control" id="kd_tarif" name="kd_tarif" placeholder="Input Kode Daerah" maxlength="50" required="" >
+                                                        <input type="text" class="form-control" id="kd_tarif" name="kd_tarif" placeholder="Input Daerah" maxlength="50" required="">
                                                     </div>
-                                                </div> --}}
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Daerah</label>
                                                     <div class="col-sm-12">
@@ -176,7 +176,10 @@
     //     $('#kd_tarif').val('');
     // }
 
-    function editFunc(kd_tarif) {
+    function editFunc(ev) {
+        ev.preventDefault();
+        var kd_tarif = ev.currentTarget.getAttribute('id');
+
         $.ajax({
             type: "POST",
             url: "{{ url('edit-tarif') }}",
@@ -189,6 +192,7 @@
                 $('#CompanyModal').html("Edit Company");
                 $('#company-modal').modal('show');
                 $('#kd_tarif').val(res.kd_tarif);
+                $('#kd_tarif_a').val(res.kd_tarif);
                 $('#daerah').val(res.daerah);
                 $('#tarif').val(res.tarif);
 
@@ -196,7 +200,10 @@
         });
     }
 
-    function deleteFunc(id) {
+    function deleteFunc(ev) {
+        ev.preventDefault();
+        var kd_tarif = ev.currentTarget.getAttribute('id');
+
         if (confirm("Delete Record?") == true) {
             var id = id;
             // console.log('delete',id)

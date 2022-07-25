@@ -7,78 +7,75 @@
 
     <div class="page-content">
         <div class="container-fluid">
-             <div class="row">
+            <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-4">Isi Data Mobil</h4>
                             <div class="table-responsive">
-                                {{-- <div class="pull-right mb-2">
-                                    <a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Tambah</a>
-                                </div> --}}
+
                                 <form action="javascript:void(0)" id="CompanyFormAdd" name="CompanyFormAdd" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                    {{-- <input type="hidden" name="kd_mobil" id="kd_mobil"> --}}
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Mobil</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control"  name="kd_mobil" placeholder="Input Kode Mobil" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="kd_mobil" placeholder="Input Kode Mobil" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Jenis Mobil</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="jenis" placeholder="Input jenis Mobil" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="jenis" placeholder="Input jenis Mobil" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Type</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="type" placeholder="Input Type" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="type" placeholder="Input Type" maxlength="50" required="">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Warna</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="warna" placeholder="Input Warna" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="warna" placeholder="Input Warna" maxlength="50" required="">
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Tahun</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="tahun" placeholder="Input Tahun" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="tahun" placeholder="Input Tahun" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">No polisi</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="no_polisi" placeholder="Input No Polisi" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="no_polisi" placeholder="Input No Polisi" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">No Rangka</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="no_rangka" placeholder="Input No Rangka" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="no_rangka" placeholder="Input No Rangka" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">No Mesin</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="no_mesin" placeholder="Input No Mesin" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="no_mesin" placeholder="Input No Mesin" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Biaya Sewa</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="biaya" placeholder="Input Biaya Sewa" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="biaya" placeholder="Input Biaya Sewa" maxlength="50" required="">
                                         </div>
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Status</label>
                                         <div class="col-sm-12">
@@ -86,10 +83,10 @@
                                                 <option value="">Choose</option>
                                                 <option value="TERSEDIA">
                                                     TERSEDIA </option>
-                                                 <option value="TIDAK TERSEDIA">
-                                                      TIDAK TERSEDIA</option>
+                                                <option value="TIDAK TERSEDIA">
+                                                    TIDAK TERSEDIA</option>
                                             </select>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                     <br>
                                     <div class="col-sm-offset-2 col-sm-10">
@@ -160,35 +157,35 @@
                                                         <input type="text" class="form-control" id="tahun" name="tahun" placeholder="Input Tahun" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">No polisi</label>
                                                     <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="no_polisi" name="no_polisi" placeholder="Input No Polisi" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">No Rangka</label>
                                                     <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="no_rangka" name="no_rangka" placeholder="Input No Rangka" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">No Mesin</label>
                                                     <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="no_mesin" name="no_mesin" placeholder="Input No Mesin" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Biaya Sewa</label>
                                                     <div class="col-sm-12">
                                                         <input type="text" class="form-control" id="biaya" name="biaya" placeholder="Input Biaya Sewa" maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Status</label>
                                                     <div class="col-sm-12">

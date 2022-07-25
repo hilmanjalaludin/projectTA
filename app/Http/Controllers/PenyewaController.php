@@ -16,31 +16,50 @@ class PenyewaController extends Controller
         if (request()->ajax()) {
             $data = Penyewa::select('*');
             if (Session::get('hak_akses') == 'direktur') {
-            return datatables()->of($data)
-                ->addColumn('action', function ($data) {
-                    $button = '<a href="javascript:void(0)" data-toggle="tooltip" onclick="editFunc(' . $data->nik . ' )" data-original-title="Edit" class="edit btn btn-primary edit" >Edit</a>';
-                    $button .= '&nbsp; <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->nik . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger" >Delete</a>';
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->addIndexColumn()
-                ->make(true);
-            }else {
                 return datatables()->of($data)
-                ->make(true);
+                    ->addColumn('action', function ($data) {
+                        $button = '<a href="javascript:void(0)" data-toggle="tooltip" id="' . $data->nik . '" onclick="editFunc(event)" data-original-title="Edit" class="edit btn btn-primary edit" >Edit</a>';
+                        $button .= '&nbsp; <a href="javascript:void(0);" id="' . $data->nik . '" onclick="deleteFunc(event)" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger" >Delete</a>';
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->addIndexColumn()
+                    ->make(true);
+            } else {
+                return datatables()->of($data)
+                    ->make(true);
             }
         }
         if (Session::get('hak_akses') == 'direktur') {
-        return view('penyewa.indexd');
+            return view('penyewa.indexd');
         }
         return view('penyewa.index');
     }
 
 
-   
+
     public function store(Request $request)
     {
-            $company = Penyewa::insert(
+        $company = Penyewa::insert(
+            [
+                'nik' => $request->nik,
+                'nama' => $request->nama,
+                'telp' => $request->telp,
+                'alamat' => $request->alamat,
+                'jml_sewa' => $request->jml_sewa,
+                'keterangan' => $request->keterangan,
+            ]
+        );
+
+        return Response()->json($company);
+    }
+
+    public function update(Request $request)
+    {
+        $companyId = $request->nik;
+        $company = DB::table('penyewa')
+            ->where('nik', $request->nik_a)
+            ->update(
                 [
                     'nik' => $request->nik,
                     'nama' => $request->nama,
@@ -48,27 +67,9 @@ class PenyewaController extends Controller
                     'alamat' => $request->alamat,
                     'jml_sewa' => $request->jml_sewa,
                     'keterangan' => $request->keterangan,
+
                 ]
             );
-        
-        return Response()->json($company);
-    }
-    
-    public function update(Request $request)
-    {
-        $companyId = $request->nik;
-            $company = DB::table('penyewa')
-                ->where('nik', $companyId)
-                ->update(
-                    [
-                        'nama' => $request->nama,
-                        'telp' => $request->telp,
-                        'alamat' => $request->alamat,
-                        'jml_sewa' => $request->jml_sewa,
-                        'keterangan' => $request->keterangan,
-                        
-                    ]
-                );
         return Response()->json($company);
     }
 

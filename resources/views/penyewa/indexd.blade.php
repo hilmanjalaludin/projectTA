@@ -17,28 +17,28 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">NIK</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control"  name="nik" placeholder="Input NIK" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="nik" placeholder="Input NIK" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Nama</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">No Telpon</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="telp" placeholder="Input No Telpon" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="telp" placeholder="Input No Telpon" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Alamat</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="alamat" placeholder="Input Alamat" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="alamat" placeholder="Input Alamat" maxlength="50" required="">
                                         </div>
                                     </div>
-                                   
+
 
                                     <br>
                                     <div class="col-sm-offset-2 col-sm-10">
@@ -77,8 +77,14 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                <input type="hidden" name="nik" id="nik">
-                                               
+                                                <input type="hidden" name="nik_a" id="nik_a">
+                                                <div class="form-group">
+                                                    <label for="name" class="col-sm-2 control-label">NIK</label>
+                                                    <div class="col-sm-12">
+                                                        <input type="number" class="form-control" name="nik" id="nik" placeholder="Input NIK" maxlength="50" required="">
+                                                    </div>
+                                                </div>
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Nama</label>
                                                     <div class="col-sm-12">
@@ -185,7 +191,9 @@
     });
 
 
-    function editFunc(nik) {
+    function editFunc(ev) {
+        ev.preventDefault();
+        var nik = ev.currentTarget.getAttribute('id');
         $.ajax({
             type: "POST",
             url: "{{ url('edit-penyewa') }}",
@@ -198,6 +206,7 @@
                 $('#CompanyModal').html("Edit Company");
                 $('#company-modal').modal('show');
                 $('#nik').val(res.nik);
+                $('#nik_a').val(res.nik);
                 $('#nama').val(res.nama);
                 $('#telp').val(res.telp);
                 $('#alamat').val(res.alamat);
@@ -206,7 +215,9 @@
         });
     }
 
-    function deleteFunc(id) {
+    function deleteFunc(ev) {
+        ev.preventDefault();
+        var id = ev.currentTarget.getAttribute('id');
         if (confirm("Delete Record?") == true) {
             var id = id;
             // console.log('delete',id)

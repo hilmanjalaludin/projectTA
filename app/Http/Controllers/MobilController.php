@@ -8,6 +8,7 @@ use Datatables;
 use App\Helpers\FlashMessages;
 use Illuminate\Support\Facades\DB;
 use Session;
+
 class MobilController extends Controller
 {
 
@@ -16,22 +17,22 @@ class MobilController extends Controller
         if (request()->ajax()) {
             $data = Mobil::select('*');
             if (Session::get('hak_akses') == 'direktur') {
-            return datatables()->of($data)
-                ->addColumn('action', function ($data) {
-                    $button = '<a href="javascript:void(0)" data-toggle="tooltip" onclick="editFunc(' . $data->kd_mobil . ' )" data-original-title="Edit" class="edit btn btn-primary edit">Edit</a>';
-                    $button .= '&nbsp; <a href="javascript:void(0);" id="delete-compnay" onclick="deleteFunc(' . $data->kd_mobil . ')" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger">Delete</a>';
-                    return $button;
-                })
-                ->rawColumns(['action'])
-                ->addIndexColumn()
-                ->make(true);
-            }else {
                 return datatables()->of($data)
-                ->make(true);
+                    ->addColumn('action', function ($data) {
+                        $button = '<a href="javascript:void(0)" data-toggle="tooltip" id="' . $data->kd_mobil . '" onclick="editFunc(event)" data-original-title="Edit" class="edit btn btn-primary edit">Edit</a>';
+                        $button .= '&nbsp; <a href="javascript:void(0);" id="' . $data->kd_mobil . '" onclick="deleteFunc(event)" data-toggle="tooltip" data-original-title="Delete" class="delete btn btn-danger">Delete</a>';
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->addIndexColumn()
+                    ->make(true);
+            } else {
+                return datatables()->of($data)
+                    ->make(true);
             }
         }
         if (Session::get('hak_akses') == 'direktur') {
-        return view('mobil.indexd');
+            return view('mobil.indexd');
         }
         return view('mobil.index');
     }
@@ -39,7 +40,30 @@ class MobilController extends Controller
 
     public function store(Request $request)
     {
-            $company = Mobil::insert(
+        $company = Mobil::insert(
+            [
+                'kd_mobil' => $request->kd_mobil,
+                'jenis' => $request->jenis,
+                'type' => $request->type,
+                'warna' => $request->warna,
+                'tahun' => $request->tahun,
+                'no_polisi' => $request->no_polisi,
+                'no_rangka' => $request->no_rangka,
+                'no_mesin' => $request->no_mesin,
+                'biaya' => $request->biaya,
+                'status' => $request->status,
+            ]
+        );
+
+        return Response()->json($company);
+    }
+    public function update(Request $request)
+    {
+        $companyId = $request->kd_mobil;
+        //  dd($companyId);
+        $company = DB::table('mobil')
+            ->where('kd_mobil', $request->kd_mobil_a)
+            ->update(
                 [
                     'kd_mobil' => $request->kd_mobil,
                     'jenis' => $request->jenis,
@@ -51,31 +75,9 @@ class MobilController extends Controller
                     'no_mesin' => $request->no_mesin,
                     'biaya' => $request->biaya,
                     'status' => $request->status,
+
                 ]
             );
-       
-        return Response()->json($company);
-    }
-    public function update(Request $request)
-    {
-        $companyId = $request->kd_mobil;
-        //  dd($companyId);
-            $company = DB::table('mobil')
-                ->where('kd_mobil', $companyId)
-                ->update(
-                    [
-                        'jenis' => $request->jenis,
-                        'type' => $request->type,
-                        'warna' => $request->warna,
-                        'tahun' => $request->tahun,
-                        'no_polisi' => $request->no_polisi,
-                        'no_rangka' => $request->no_rangka,
-                        'no_mesin' => $request->no_mesin,
-                        'biaya' => $request->biaya,
-                        'status' => $request->status,
-                        
-                    ]
-                );
         return Response()->json($company);
     }
 
