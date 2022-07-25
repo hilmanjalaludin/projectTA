@@ -25,13 +25,13 @@ Route::get('logout', 'AuthController@logout');
 
 Route::group(['middleware' => 'usersession'], function () {
     //Menu
-    Route::get('dashboard', 'AuthController@dashboard')->name('dashboard.index');   
-    Route::get('transaksi', 'AuthController@transaksi')->name('transaksi.index');   
-    Route::get('laporan', 'AuthController@laporan')->name('laporan.index');   
-    Route::get('pengaturan', 'AuthController@pengaturan')->name('pengaturan.index');   
-    Route::get('about', 'AuthController@about')->name('about.index');   
-    Route::get('ttkm', 'AboutController@ttkm')->name('ttkm.index');   
-    Route::get('ktt', 'AboutController@ktt')->name('ktt.index');   
+    Route::get('dashboard', 'AuthController@dashboard')->name('dashboard.index');
+    Route::get('transaksi', 'AuthController@transaksi')->name('transaksi.index');
+    Route::get('laporan', 'AuthController@laporan')->name('laporan.index');
+    Route::get('pengaturan', 'AuthController@pengaturan')->name('pengaturan.index');
+    Route::get('about', 'AuthController@about')->name('about.index');
+    Route::get('ttkm', 'AboutController@ttkm')->name('ttkm.index');
+    Route::get('ktt', 'AboutController@ktt')->name('ktt.index');
 
     //Tarif
     Route::get('get-tarif', 'TarifController@index')->name('tarif.index');
@@ -72,7 +72,7 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('coronas/edit/{id}', 'SewaController@detailsewa')->name('coronas.edit');
     Route::get('/projects/display/{id}', 'SewaController@detailsewa')->name('projects.display');
     Route::get('/biodata/tampildata/{id}', 'SewaController@detailsewa')->name('biodata.tampildata');
-    
+
     //Password
     Route::get('get-dtpng', 'DatapngController@index')->name('dtpng.index');
     Route::post('store-dtpng', 'DatapngController@store');
@@ -80,32 +80,31 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('delete-dtpng', 'DatapngController@destroy');
     Route::get('detail-dtpng/{id}', 'DatapngController@detail')->name('dtpng.detailpng');
     Route::post('update-dtpng', 'DatapngController@update')->name('dtpng.update');
-    
+
     // Laporan
     Route::get('get-lpjr', 'LaporanjrController@index')->name('lpjr.index');
-    Route::post('detail-lpjr', 'LaporanjrController@detail')->name('lpjr.post');   
+    Route::post('detail-lpjr', 'LaporanjrController@detail')->name('lpjr.post');
     Route::get('get-lppny', 'LaporanpnyController@index')->name('lppny.index');
-    Route::post('detail-lppny', 'LaporanpnyController@detail')->name('lppny.post');   
+    Route::post('detail-lppny', 'LaporanpnyController@detail')->name('lppny.post');
     Route::get('get-lpmst', 'LaporanmstController@index')->name('lpmst.index');
-    Route::post('detail-lpmst', 'LaporanmstController@detail')->name('lpmst.post');   
+    Route::post('detail-lpmst', 'LaporanmstController@detail')->name('lpmst.post');
     Route::get('get-lppengem', 'LaporanpengemController@index')->name('lppengem.index');
-    Route::post('detail-lppengem', 'LaporanpengemController@detail')->name('lppengem.post');   
+    Route::post('detail-lppengem', 'LaporanpengemController@detail')->name('lppengem.post');
     // Transaksi
     Route::get('get-trspny', 'TrspnyController@index')->name('trspny.index');
-    Route::get('detail-trspny/{id}', 'TrspnyController@detail')->name('trspny.post');   
+    Route::get('detail-trspny/{id}', 'TrspnyController@detail')->name('trspny.post');
     // Route::get('detail-trspny/{id}', function ($id) {
 
     //     $course = App\Models\Course::where('category_id',$id)->get();
     //     return response()->json($course);
     // });
-    Route::post('store-trspny', 'TrspnyController@store')->name('trspny.store');   
+    Route::post('store-trspny', 'TrspnyController@store')->name('trspny.store');
 
+    Route::post('store-trspengem', 'TrspengemController@store')->name('trspengem.store');
     Route::get('get-trspengem', 'TrspengemController@index')->name('trspengem.index');
-    Route::post('detail-trspengem', 'TrspengemController@detail')->name('trspengem.post');   
+    Route::post('detail-trspengem', 'TrspengemController@detail')->name('trspengem.post');
     Route::get('get-trsjurnal', 'TrsjurnalController@index')->name('trsjurnal.index');
-    Route::post('detail-trsjurnal', 'TrsjurnalController@detail')->name('trsjurnal.post');   
-
-
+    Route::post('detail-trsjurnal', 'TrsjurnalController@detail')->name('trsjurnal.post');
 });
 
 
@@ -138,4 +137,3 @@ Route::post('delete-lpbayar', 'LaporanbayarController@destroy');
 
 
 // Route::get('/biodata/tampildata/{id}', 'SewaController@detailsewa')->name('biodata.tampildata');
-
