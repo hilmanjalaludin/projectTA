@@ -14,7 +14,7 @@
                             <h4 class="card-title mb-4">Laporan Jurnal</h4>
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <table class="table table-bordered" >
+                                    <table class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>Tanggal</th>
@@ -24,15 +24,15 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($tampil as $d)
-                                                <td>{{ $d->tanggal }}</td>
-                                                <td>{{ $d->name }}</td>
-                                                <td>{{ $d->no_ktp }}</td>
+                                            <td>{{ $d->tanggal }}</td>
+                                            <td>{{ $d->name }}</td>
+                                            <td>{{ $d->no_ktp }}</td>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                           
+
                         </div>
                         <!-- end table-responsive -->
                     </div>
@@ -72,4 +72,9 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>
 @endsection

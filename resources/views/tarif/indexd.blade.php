@@ -275,6 +275,10 @@
             }
         });
     });
+
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
 </script>
 </body>
 

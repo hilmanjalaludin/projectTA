@@ -17,28 +17,28 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">NIK</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control"  name="nik" placeholder="Input NIK" maxlength="50" required="">
+                                            <input type="number" class="form-control" name="nik" placeholder="Input NIK" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Nama</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">No Telpon</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="telp" placeholder="Input No Telpon" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="telp" placeholder="Input No Telpon" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Alamat</label>
                                         <div class="col-sm-12">
-                                            <input type="text" class="form-control"  name="alamat" placeholder="Input Alamat" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="alamat" placeholder="Input Alamat" maxlength="50" required="">
                                         </div>
                                     </div>
-                                   
+
 
                                     <br>
                                     <div class="col-sm-offset-2 col-sm-10">
@@ -77,7 +77,7 @@
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
                                                 <input type="hidden" name="nik" id="nik">
-                                               
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Nama</label>
                                                     <div class="col-sm-12">
@@ -275,4 +275,9 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>
 @endsection

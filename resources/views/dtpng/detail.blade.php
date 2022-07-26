@@ -17,24 +17,24 @@
                                 @if ($message = Session::get('success'))
                                 <div class="alert alert-success">
                                     <p>{{ $message }}</p>
-                                </div>                               
+                                </div>
                                 @endif
                                 @if ($message = Session::get('error'))
                                 <div class="alert alert-danger">
                                     <p>{{ $message }}</p>
-                                </div>                               
+                                </div>
                                 @endif
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('dtpng.update') }}" >
+                                    <form method="POST" action="{{ route('dtpng.update') }}">
                                         @csrf
-                                        
+
                                         <div class="form-group">
                                             <label for="name" class="col-sm-2 control-label">ID User</label>
                                             <div class="col-sm-12">
                                                 <input class="form-control" type="text" name="id_user" value="{{$company->id_user}}" readonly>
                                             </div>
                                         </div>
-                                       
+
 
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Password Lama</label>
@@ -54,17 +54,17 @@
                                                 <input class="form-control" type="text" name="confirm_password" required>
                                             </div>
                                         </div>
-                                       
+
                                         <br>
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary" >Simpan</button>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
                                         </div>
                                     </form>
-                                               
+
                                 </div>
                             </div>
-                           
+
                         </div>
                         <!-- end table-responsive -->
                     </div>
@@ -104,4 +104,9 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>
 @endsection

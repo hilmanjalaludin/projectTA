@@ -8,7 +8,11 @@
 
     <div class="page-content">
         <div class="container-fluid">
-            @include('partials.messages')
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p>{{ $message }}</p>
+            </div>
+            @endif
             <!-- start page title -->
             <div class="row">
                 <div class="col-12">
@@ -47,7 +51,7 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <a href="{{ route('dtpng.index') }}" >
+                    <a href="{{ route('dtpng.index') }}">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -66,10 +70,10 @@
                                 </div>
                             </div>
                         </div>
-                    </a>    
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('tarif.index') }}" >
+                    <a href="{{ route('tarif.index') }}">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -88,10 +92,10 @@
                                 </div>
                             </div>
                         </div>
-                    </a>    
+                    </a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('mobil.index') }}" >
+                    <a href="{{ route('mobil.index') }}">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -110,11 +114,11 @@
                                 </div>
                             </div>
                         </div>
-                    </a>    
+                    </a>
                 </div>
                 {{-- kebawah --}}
                 <div class="col-md-4">
-                    <a href="{{ route('kondisi.index') }}" >
+                    <a href="{{ route('kondisi.index') }}">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -136,7 +140,7 @@
                     </a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('dtprk.index') }}" >
+                    <a href="{{ route('dtprk.index') }}">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -158,7 +162,7 @@
                     </a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('penyewa.index') }}" >
+                    <a href="{{ route('penyewa.index') }}">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
@@ -212,4 +216,9 @@
     </body>
 
     </html>
+    <script>
+        $(document).ready(function() {
+            $(".alert").slideDown(300).delay(4000).slideUp(300);
+        });
+    </script>
     @endsection

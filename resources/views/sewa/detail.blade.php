@@ -42,7 +42,7 @@
                                 </div>
                                 @endif
                                 <div class="card-body">
-                                    <table class="table table-bordered" >
+                                    <table class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th>Nomor Sewa</th>
@@ -59,22 +59,22 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($company as $d)
-                                                <td>{{ $d->no_sewa }}</td>
-                                                <td>{{ $d->kd_mobil }}</td>
-                                                <td>{{ $d->kd_tarif }}</td>
-                                                <td>{{ $d->tgl_sewa }}</td>
-                                                <td>{{ $d->jam_sewa }}</td>
-                                                <td>{{ $d->lama_sewa }}</td>
-                                                <td>{{ $d->tgl_kembali }}</td>
-                                                <td>{{ $d->jam_kembali }}</td>
-                                                <td>{{ $d->supir }}</td>
-                                                <td>{{ $d->subtotal }}</td>
+                                            <td>{{ $d->no_sewa }}</td>
+                                            <td>{{ $d->kd_mobil }}</td>
+                                            <td>{{ $d->kd_tarif }}</td>
+                                            <td>{{ $d->tgl_sewa }}</td>
+                                            <td>{{ $d->jam_sewa }}</td>
+                                            <td>{{ $d->lama_sewa }}</td>
+                                            <td>{{ $d->tgl_kembali }}</td>
+                                            <td>{{ $d->jam_kembali }}</td>
+                                            <td>{{ $d->supir }}</td>
+                                            <td>{{ $d->subtotal }}</td>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                           
+
                         </div>
                         <!-- end table-responsive -->
                     </div>
@@ -114,4 +114,9 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>
 @endsection

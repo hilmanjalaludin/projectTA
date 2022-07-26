@@ -59,31 +59,55 @@ class TrspengemController extends Controller
                 'tgl_transaksi' => $request->tgl_transaksi,
                 'nik' => $request->nik,
                 'dp' => $request->dp,
+                'kurang' => $request->kurang,
             ]
         );
+
 
         DB::table('detail_sewa')->insert(
             [
                 'no_sewa' => $request->no_sewa,
                 'kd_mobil' => $request->kd_mobil,
-                'tgl_sewa' => $request->tgl_sewa,
+                'jam_sewa' => $request->jam_sewa,
+                'lama_sewa' => $request->lama_sewa,
                 'tgl_kembali' => $request->tgl_kembali,
                 'jam_kembali' => $request->jam_kembali,
+                'supir' => $request->supir,
+                'subtotal' => $request->subtotal,
             ]
         );
 
         DB::table('penyewa')->insert(
             [
-                'nama' => $request->nama,
                 'nik' => $request->nik,
+                'keterangan' => $request->keterangan,
+
+                'nama' => $request->nama,
                 'telp' => $request->telp,
                 'alamat' => $request->alamat,
             ]
         );
+
+        // DB::table('mobil')->insert(
+        //     [
+        //         'kd_mobil' => $request->kd_mobil,
+        //         'biaya' => $request->biaya,
+        //     ]
+        // );
         DB::table('kembali')->insert(
             [
+                'no_kembali' => $request->no_kembali,
                 'total_bayar' => $request->total_bayar,
-                'no_sewa' => $request->no_sewa,
+
+            ]
+        );
+        DB::table('detail_kembali')->insert(
+            [
+                'no_kembali' => $request->no_kembali,
+                'denda_telat' => $request->denda_telat,
+                'kondisi' => $request->kondisi,
+                'denda_kondisi' => $request->denda_kondisi,
+
             ]
         );
 

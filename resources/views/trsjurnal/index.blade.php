@@ -11,11 +11,11 @@
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
-            </div>                               
-            @elseif  ($message = Session::get('error'))
+            </div>
+            @elseif ($message = Session::get('error'))
             <div class="alert alert-danger">
                 <p>{{ $message }}</p>
-            </div>                               
+            </div>
             @endif
 
             <div class="row">
@@ -26,48 +26,48 @@
                             <div class="table-responsive">
                                 <div class="card-body">
                                     <h4>Isi Data Jurnal</h4>
-                                    <form method="POST" action="{{ route('lpmst.post') }}" >
-                                        @csrf 
+                                    <form method="POST" action="{{ route('trsjurnal.store') }}">
+                                        @csrf
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">No Jurnal</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="no_jurnal" placeholder="Input Jurnal" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">No Transaksi</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="no_trans" placeholder="Input No Transaksi" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">Tanggal</label>
                                                     <div class="col-sm-12">
-                                                        <input type="date" class="form-control" name="tgl_transaksi" placeholder="Input Tanggal Transaksi" maxlength="50" required="">
+                                                        <input type="date" class="form-control" name="tanggal" placeholder="Input Tanggal Transaksi" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">Nama Transaksi</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="nama_trans" placeholder="Input Nama Transaksi" maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <label for="name" class="control-label" style="font-size:10px">Kode</label>
-                                                        <button >CARI</button>
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <button>CARI</button>
+                                                        <input type="text" class="form-control" name="kd_perkiraan" placeholder="Input Kode" maxlength="50" required="">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label for="name" class="control-label" style="font-size:10px">Nama Perusahaan</label>
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="nama_trans" placeholder="Input Nama Perusahaan" maxlength="50" required="">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label for="name" class="col-sm-6 control-label" style="font-size:10px">Debet</label>
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="debet" placeholder="Input Debet" maxlength="50" required="">
                                                     </div>
                                                     <div class="col-md-3" style="padding-top: 6%">
                                                         <button>INPUT</button>
@@ -76,16 +76,16 @@
                                                     {{-- bag2 --}}
                                                     <div class="col-md-3">
                                                         <label for="name" class="control-label" style="font-size:10px">Kode</label>
-                                                        <button >CARI</button>
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <button>CARI</button>
+                                                        <input type="text" class="form-control" name="no_jurnal" placeholder="Input Kode" maxlength="50" required="">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label for="name" class="control-label" style="font-size:10px">Nama Perusahaan</label>
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="nama_trans" placeholder="Input Nama Perusahaan" maxlength="50" required="">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label for="name" class="col-sm-6 control-label" style="font-size:10px">Debet</label>
-                                                        <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="debet" placeholder="Input Debet" maxlength="50" required="">
                                                     </div>
                                                     <div class="col-md-3" style="padding-top: 6%">
                                                         <button>INPUT</button>
@@ -105,13 +105,15 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach ($tampil1 as $c)
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>2</td>
-                                                            <td>3</td>
-                                                            <td>4</td>
-                                                            <td>5</td>
+                                                            <td>{{ $c->tanggal }}</td>
+                                                            <td>{{ $c->kd_perkiraan }}</td>
+                                                            <td>{{ $c->nm_perkiraan }}</td>
+                                                            <td>{{ $c->debet }}</td>
+                                                            <td>{{ $c->kredit }}</td>
                                                         </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                                 <h4>Jurnal Umum</h4>
@@ -126,30 +128,33 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @foreach ($tampil2 as $d)
                                                         <tr>
-                                                            <td>1</td>
-                                                            <td>2</td>
-                                                            <td>3</td>
-                                                            <td>4</td>
-                                                            <td>5</td>
+
+                                                            <td>{{ $d->tanggal }}</td>
+                                                            <td>{{ $d->kd_perkiraan }}</td>
+                                                            <td>{{ $d->nm_perkiraan }}</td>
+                                                            <td>{{ $d->debet }}</td>
+                                                            <td>{{ $d->kredit }}</td>
                                                         </tr>
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-                                       
+
                                         <br>
                                         <div class="row">
                                             <div class="col-md-6"></div>
                                             <div class="col-md-6">
                                                 <div class="col-sm-offset-2 col-sm-10">
-                                                    <button type="submit" class="btn btn-primary" >Simpan</button>
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
                                                 </div>
-        
+
                                             </div>
                                         </div>
-                                    </form>                                               
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -180,4 +185,9 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>
 @endsection

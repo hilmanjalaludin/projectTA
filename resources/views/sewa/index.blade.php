@@ -97,7 +97,7 @@
                                                         <input type="number" class="form-control" id="nik" name="nik" placeholder="Input NIK " maxlength="50" required="">
                                                     </div>
                                                 </div>
-                                               
+
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">ID User</label>
                                                     <div class="col-sm-12">
@@ -244,6 +244,7 @@
             }
         });
     }
+
     function detailFunc(no_sewa) {
         // console.log('edit')
         // return false
@@ -321,4 +322,9 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>
 @endsection

@@ -28,42 +28,47 @@
                                 {{-- @if ($message = Session::get('success'))
                                 <div class="alert alert-success">
                                     <p>{{ $message }}</p>
-                                </div>                               
-                                @endif
-                                @if ($message = Session::get('error'))
-                                <div class="alert alert-danger">
-                                    <p>{{ $message }}</p>
-                                </div>                               
-                                @endif --}}
-                                
-                                <form action="{{url('post-login')}}" method="POST" id="logForm">
-                                    {{ csrf_field() }}
-                                    <div class="form-label-group">
-                                        <input type="text" name="name" id="inputEmail" class="form-control" placeholder="Nama">
-                                        <label for="inputEmail">Username</label>
-                                        @if ($errors->has('name'))
-                                        <span class="error">{{ $errors->first('name') }}</span>
-                                        @endif
-                                    </div>
-                                    <div class="form-label-group">
-                                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
-                                        <label for="inputPassword">Password</label>
-                                        @if ($errors->has('password'))
-                                        <span class="error">{{ $errors->first('password') }}</span>
-                                        @endif
-                                    </div>
-                                    <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Login</button>
-                                    <div class="text-center">Masukan Username dan password dengan benar ....
-                                        {{-- <a class="small" href="{{url('registration')}}">Register</a> --}}
-                                    </div>
-                                </form>
                             </div>
+                            @endif
+                            @if ($message = Session::get('error'))
+                            <div class="alert alert-danger">
+                                <p>{{ $message }}</p>
+                            </div>
+                            @endif --}}
+
+                            <form action="{{url('post-login')}}" method="POST" id="logForm">
+                                {{ csrf_field() }}
+                                <div class="form-label-group">
+                                    <input type="text" name="name" id="inputEmail" class="form-control" placeholder="Nama">
+                                    <label for="inputEmail">Username</label>
+                                    @if ($errors->has('name'))
+                                    <span class="error">{{ $errors->first('name') }}</span>
+                                    @endif
+                                </div>
+                                <div class="form-label-group">
+                                    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+                                    <label for="inputPassword">Password</label>
+                                    @if ($errors->has('password'))
+                                    <span class="error">{{ $errors->first('password') }}</span>
+                                    @endif
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="submit">Login</button>
+                                <div class="text-center">Masukan Username dan password dengan benar ....
+                                    {{-- <a class="small" href="{{url('registration')}}">Register</a> --}}
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>

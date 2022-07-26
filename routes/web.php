@@ -93,16 +93,13 @@ Route::group(['middleware' => 'usersession'], function () {
     // Transaksi
     Route::get('get-trspny', 'TrspnyController@index')->name('trspny.index');
     Route::get('detail-trspny/{id}', 'TrspnyController@detail')->name('trspny.post');
-    // Route::get('detail-trspny/{id}', function ($id) {
-
-    //     $course = App\Models\Course::where('category_id',$id)->get();
-    //     return response()->json($course);
-    // });
     Route::post('store-trspny', 'TrspnyController@store')->name('trspny.store');
 
     Route::post('store-trspengem', 'TrspengemController@store')->name('trspengem.store');
     Route::get('get-trspengem', 'TrspengemController@index')->name('trspengem.index');
     Route::post('detail-trspengem', 'TrspengemController@detail')->name('trspengem.post');
+
+    Route::post('store-trsjurnal', 'TrsjurnalController@store')->name('trsjurnal.store');
     Route::get('get-trsjurnal', 'TrsjurnalController@index')->name('trsjurnal.index');
     Route::post('detail-trsjurnal', 'TrsjurnalController@detail')->name('trsjurnal.post');
 });

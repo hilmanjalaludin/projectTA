@@ -190,13 +190,13 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Nama Operasional</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="name" placeholder="Input Nama" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="supir" placeholder="Input Nama" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">NIK Penyewa</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="nik" placeholder="Input nik" maxlength="50" required="">
+                                                                <input type="number" class="form-control" name="nik" placeholder="Input nik" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -216,7 +216,7 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Terlambat</label>
                                                             <div class="col-sm-6">
-                                                                <!-- <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required=""> -->
+                                                                <input type="text" class="form-control" name="terlambat" placeholder="Input Terlambat" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -332,4 +332,9 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>
 @endsection

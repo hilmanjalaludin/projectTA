@@ -11,11 +11,11 @@
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
-            </div>                               
-            @elseif  ($message = Session::get('error'))
+            </div>
+            @elseif ($message = Session::get('error'))
             <div class="alert alert-danger">
                 <p>{{ $message }}</p>
-            </div>                               
+            </div>
             @endif
 
             <div class="row">
@@ -25,28 +25,28 @@
                             <h4 class="card-title mb-4">Laporan Transaksi Pengembalian</h4>
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('lppengem.post') }}" >
-                                        @csrf 
+                                    <form method="POST" action="{{ route('lppengem.post') }}">
+                                        @csrf
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Tanggal Awal</label>
                                             <div class="col-sm-4">
-                                                <input class="form-control " name="tglaw" type="date" >
+                                                <input class="form-control " name="tglaw" type="date">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Tanggal Akhir</label>
                                             <div class="col-sm-4">
-                                                <input class="form-control " name="tglak" type="date" >
+                                                <input class="form-control " name="tglak" type="date">
                                             </div>
                                         </div>
-                                       
+
                                         <br>
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary" >Simpan</button>
+                                            <button type="submit" class="btn btn-primary">Simpan</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
                                         </div>
                                     </form>
-                                               
+
                                 </div>
                             </div>
                         </div>
@@ -77,4 +77,9 @@
 </body>
 
 </html>
+<script>
+    $(document).ready(function() {
+        $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+</script>
 @endsection
