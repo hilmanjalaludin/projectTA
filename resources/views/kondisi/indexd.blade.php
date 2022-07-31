@@ -4,23 +4,27 @@
 <!-- Start right Content here -->
 <!-- ============================================================== -->
 <div class="main-content">
-
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
+                            @if ($message = Session::get('success'))
+                            <div class="alert alert-success">
+                                <p>{{ $message }}</p>
+                            </div>
+                            @endif
                             <h4 class="card-title mb-4">Isi Data Kondisi Mobil</h4>
                             <div class="table-responsive">
                                 <form action="javascript:void(0)" id="CompanyFormAdd" name="CompanyFormAdd" class="form-horizontal" method="POST" enctype="multipart/form-data">
 
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Kondisi</label>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control" name="kd_kondisi" placeholder="Input kode Kondisi" maxlength="50" required="">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Mobil</label>
                                         <div class="col-sm-12">
@@ -79,7 +83,7 @@
                                     <br>
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                     </div>
                                 </form>
                                 @if ($message = Session::get('success'))
@@ -181,7 +185,7 @@
 
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                                 </div>
                                             </form>
                                         </div>

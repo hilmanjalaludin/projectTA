@@ -80,16 +80,22 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::post('delete-dtpng', 'DatapngController@destroy');
     Route::get('detail-dtpng/{id}', 'DatapngController@detail')->name('dtpng.detailpng');
     Route::post('update-dtpng', 'DatapngController@update')->name('dtpng.update');
+    Route::post('updateusr-dtpng', 'DatapngController@updateusr')->name('dtpng.updateusr');
 
     // Laporan
     Route::get('get-lpjr', 'LaporanjrController@index')->name('lpjr.index');
     Route::post('detail-lpjr', 'LaporanjrController@detail')->name('lpjr.post');
     Route::get('get-lppny', 'LaporanpnyController@index')->name('lppny.index');
     Route::post('detail-lppny', 'LaporanpnyController@detail')->name('lppny.post');
+    Route::post('lppny-bulan', 'LaporanpnyController@bulan')->name('lppny.bulan');
+    Route::post('lppny-tahun', 'LaporanpnyController@tahun')->name('lppny.tahun');
+
     Route::get('get-lpmst', 'LaporanmstController@index')->name('lpmst.index');
     Route::post('detail-lpmst', 'LaporanmstController@detail')->name('lpmst.post');
     Route::get('get-lppengem', 'LaporanpengemController@index')->name('lppengem.index');
     Route::post('detail-lppengem', 'LaporanpengemController@detail')->name('lppengem.post');
+    Route::post('lppengem-bulan', 'LaporanpengemController@bulan')->name('lppengem.bulan');
+    Route::post('lppengem-tahun', 'LaporanpengemController@tahun')->name('lppengem.tahun');
     // Transaksi
     Route::get('get-trspny', 'TrspnyController@index')->name('trspny.index');
     Route::get('detail-trspny/{id}', 'TrspnyController@detail')->name('trspny.post');

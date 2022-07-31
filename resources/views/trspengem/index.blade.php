@@ -52,9 +52,9 @@
                                                             <div class="col-sm-6">
                                                                 <input type="text" class="form-control" name="no_sewa" placeholder="Input no sewa" maxlength="50" required="">
                                                             </div>
-                                                            <div class="col-sm-6">
+                                                            {{-- <div class="col-sm-6">
                                                                 <button>Cari</button>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -295,7 +295,8 @@
                                                 </div>
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
+                                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button> --}}
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                                 </div>
                                             </div>
                                         </div>

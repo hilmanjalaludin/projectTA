@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Validator, Redirect, Response;
 use Session;
+use Illuminate\Support\Facades\Auth;
 
 class DatapngController extends Controller
 {
@@ -50,51 +51,23 @@ class DatapngController extends Controller
      */
     public function store(Request $request)
     {
-        $companyId = $request->id_user;
-        // if ($request->id_user == '') {
-        $tampil = DB::table('user')
-            ->where('user.id_user', $request->id_user)
-            ->count();
-
-        // }
-        // dd($request->id_user);
-        // dd($companyId != $tampil->id_user);
-        if ($tampil == 0) {
-            // echo 'insert';
+        // dd($request);
             $company = DataPng::insert(
                 [
-                    'id_user' => $request->id_user,
-                    'name' => $request->name,
-                    'password' => $request->password,
-                    'hak_akses' => 'supir',
-                    'no_ktp' => $request->no_ktp,
-                    'jenkel' => $request->jenkel,
-                    'telpon' => $request->telpon,
-                    'almt' => $request->almt,
+                        'id_user' => $request['id_user'],
+                        'name' => $request['name'],
+                        'password' => bcrypt($request['password']),
+                        'hak_akses' => 'supir',
+                        'no_ktp' => $request['no_ktp'],
+                        'jenkel' => $request['jenkel'],
+                        'telpon' => $request['telpon'],
+                        'almt' => $request['almt'],
+                      
                 ]
             );
-        } else {
-
-            $company = DB::table('user')
-                ->where('id_user', $request->id_user)
-                ->update(
-                    [
-                        'id_user' => $request->id_user,
-                        'name' => $request->name,
-                        'password' => $request->password,
-                        'hak_akses' => $request->hak_akses,
-                        'no_ktp' => $request->no_ktp,
-                        'jenkel' => $request->jenkel,
-                        'telpon' => $request->telpon,
-                        'almt' => $request->almt,
-                    ]
-                );
-        }
-        die;
-
-        return Response()->json($company);
+            return view('dtpng.index');
     }
-
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -104,38 +77,59 @@ class DatapngController extends Controller
      */
     public function update(Request $request)
     {
-        $companyId = $request->id_user;
-        // dd($companyId);
-        $pass = Hash::make($request->password);
-        $company = DB::table('user')
-            ->where('id_user', $companyId)
-            ->first();
-        // dd($company->password);
-        if (!Hash::check($request->password, $company->password)) {
-            return redirect()->back()->with('error', 'Password lama salah');
-        }
+        // dd(Auth::DataPng()->password);
         // dd($request);
-
-        if ($request->new_password != $request->confirm_password) {
-            return redirect()->back()->with('error', 'Ulangi Password tidak sama');
+        $tampil = DB::table('user')
+        ->where('id_user', $request['id_user'])
+        ->first();
+        // dd($tampil->password);
+        if (!(Hash::check($request['password'], $tampil->password))) {
+             return redirect()->back()->with('error','Password lama anda salah');
         }
+        if ($request['new_password'] != $request['confirm_password']) {
+             return redirect()->back()->with('error','Password konfirmasi tidak sama');
+        }
+        
 
-        $new_pass = Hash::make($request->new_password);
-        $companyId = $request->id_user;
-        $company = DB::table('user')
-            ->where('id_user', $companyId)
-            ->update(
-                [
-                    'password' => $new_pass,
-                    // 'name' => $request->name,
-                    // 'hak_akses' => $request->hak_akses,
-                    // 'no_ktp' => $request->no_ktp,
-                    // 'jenkel' => $request->jenkel,
-                    // 'telpon' => $request->telpon,
-                    // 'almt' => $request->almt,
-                ]
-            );
-        return redirect()->back()->withSuccess('Password berhasil dirubah');
+             DB::table('user')
+                ->where('id_user', $request['id_user'])
+                ->update(
+                    [
+                        'id_user' => $request['id_user'],
+                        // 'name' => $request['name'],
+                        // 'password' => Hash::make($request['new_password']),
+                        'password' => bcrypt($request->new_password)
+
+                        // 'hak_akses' => $request['hak_akses'],
+                        // 'no_ktp' => $request['no_ktp'],
+                        // 'jenkel' => $request['jenkel'],
+                        // 'telpon' => $request['telpon'],
+                        // 'almt' => $request['almt'],
+                    ]
+                );
+                 return redirect()->back()->withSuccess('Password berhasil di update');
+    }
+    
+    public function updateusr(Request $request)
+    {
+        // dd($request);
+                     DB::table('user')
+                ->where('id_user', $request['id_user_a'])
+                ->update(
+                    [
+                        'id_user' => $request['id_user'],
+                        'name' => $request['name'],
+                        'password' => bcrypt($request->password),
+                        // 'password' => bcrypt($request->new_password),
+
+                        'hak_akses' => $request['hak_akses'],
+                        'no_ktp' => $request['no_ktp'],
+                        'jenkel' => $request['jenkel'],
+                        'telpon' => $request['telpon'],
+                        'almt' => $request['almt'],
+                    ]
+                );
+                 return redirect()->back()->withSuccess('Password berhasil di update');
     }
 
     public function edit(Request $request)

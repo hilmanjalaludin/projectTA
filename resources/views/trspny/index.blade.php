@@ -346,7 +346,8 @@
                                                 <div class="col-md-12">
                                                     <div class="col-sm-offset-2 col-sm-10">
                                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
+                                                        {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button> --}}
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                                     </div>
 
                                                 </div>
@@ -429,6 +430,7 @@ $('#city').html(data.html);
                             $('select[name="belakang"]').append('<option value="' + key + '">' + data[0].belakang + '</option>');
                             $('select[name="kanan"]').append('<option value="' + key + '">' + data[0].kanan + '</option>');
                             $('select[name="kiri"]').append('<option value="' + key + '">' + data[0].kiri + '</option>');
+                            $('select[name="kilometer"]').append('<option value="' + key + '">' + data[0].kilometer + '</option>');
                         });
                     } else {
                         $('#jenis').empty();
@@ -439,7 +441,7 @@ $('#city').html(data.html);
             $('#jenis').empty();
         }
     });
-    }));
+    });
 
     $(document).ready(function() {
         $(".alert").slideDown(300).delay(4000).slideUp(300);

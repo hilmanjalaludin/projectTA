@@ -25,27 +25,110 @@
                             <h4 class="card-title mb-4">Laporan Transaksi Penyewaan</h4>
                             <div class="table-responsive">
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('lppny.post') }}">
-                                        @csrf
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Tanggal Awal</label>
-                                            <div class="col-sm-4">
-                                                <input class="form-control " name="tglaw" type="date">
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <p>Tanggal per periode</p>
+                                            <form method="POST" action="{{ route('lppny.post') }}">
+                                                @csrf
+                                                {{-- <input type="hidden" name="id_user_a" id="id_user_a">  --}}
+                                                <div class="form-group">
+                                                    <label class="control-label">Tanggal Awal</label>
+                                                    <div class="col-sm-12">
+                                                        <input class="form-control " name="tglaw" type="date">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class=" control-label">Tanggal Akhir</label>
+                                                    <div class="col-sm-12">
+                                                        <input class="form-control " name="tglak" type="date">
+                                                    </div>
+                                                </div>
+    
+                                                <br>
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" class="btn btn-primary" name="tombol" value="detail">Simpan</button>
+                                                    <button type="submit" class="btn btn-success" name="tombol" value="export">Export</button>
+                                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button> --}}
+                                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button> --}}
+                                                </div>
+                                            </form>
                                         </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-2 control-label">Tanggal Akhir</label>
-                                            <div class="col-sm-4">
-                                                <input class="form-control " name="tglak" type="date">
-                                            </div>
+                                        <div class="col-md-4">
+                                            <p>Tanggal bulanan</p>
+                                            <form method="POST" action="{{ route('lppny.bulan') }}">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label class="control-label">Bulan Awal</label>
+                                                    <div class="col-sm-12">
+                                                        {{-- <input class="form-control " name="tglaw" type="date"> --}}
+                                                        <select class="form-control " name="tglaw">
+                                                            <option selected="selected">Bulan</option>
+                                                            <?php
+                                                            $bln=array(1=>"Januari","Februari","Maret","April","Mei","Juni","July","Agustus","September","Oktober","November","Desember");
+                                                            for($bulan=1; $bulan<=12; $bulan++){
+                                                            if($bulan<=9) { echo "<option value='$bulan'>$bln[$bulan]</option>"; }
+                                                            else { echo "<option value='$bulan'>$bln[$bulan]</option>"; }
+                                                            }
+                                                            ?>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class=" control-label">Bulan Akhir</label>
+                                                    <div class="col-sm-12">
+                                                        {{-- <input class="form-control " name="tglak" type="date"> --}}
+                                                        <select class="form-control " name="tglak">
+                                                            <option selected="selected">Bulan</option>
+                                                            <?php
+                                                            $bln=array(1=>"Januari","Februari","Maret","April","Mei","Juni","July","Agustus","September","Oktober","November","Desember");
+                                                            for($bulan=1; $bulan<=12; $bulan++){
+                                                            if($bulan<=9) { echo "<option value='$bulan'>$bln[$bulan]</option>"; }
+                                                            else { echo "<option value='$bulan'>$bln[$bulan]</option>"; }
+                                                            }
+                                                            ?>
+                                                            </select>
+                                                    </div>
+                                                </div>
+    
+                                                <br>
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" class="btn btn-primary" name="tombol" value="detail">Simpan</button>
+                                                    <button type="submit" class="btn btn-success" name="tombol" value="export">Export</button>
+                                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button> --}}
+                                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button> --}}
+                                                </div>
+                                            </form>
                                         </div>
-
-                                        <br>
-                                        <div class="col-sm-offset-2 col-sm-10">
-                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
+                                        <div class="col-md-4">
+                                            <p>Tanggal tahunan</p>
+                                            <form method="POST" action="{{ route('lppny.tahun') }}">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label class="control-label">Tahun ke</label>
+                                                    <div class="col-sm-12">
+                                                        {{-- <input class="form-control " name="tglaw" type="date"> --}}
+                                                        <select name="tahun" class="form-control ">
+                                                            <option selected="selected">Tahun</option>
+                                                            <?php
+                                                            for($i=date('Y'); $i>=date('Y')-32; $i-=1){
+                                                            echo "<option value='$i'> $i </option>";
+                                                            }
+                                                            ?>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                                
+    
+                                                <br>
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button type="submit" class="btn btn-primary" name="tombol" value="detail">Simpan</button>
+                                                    <button type="submit" class="btn btn-success" name="tombol" value="export">Export</button>
+                                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button> --}}
+                                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button> --}}
+                                                </div>
+                                            </form>
                                         </div>
-                                    </form>
+                                    </div>
 
                                 </div>
                             </div>

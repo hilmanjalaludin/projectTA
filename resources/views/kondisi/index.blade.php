@@ -4,7 +4,11 @@
 <!-- Start right Content here -->
 <!-- ============================================================== -->
 <div class="main-content">
-
+    @if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+    @endif
     <div class="page-content">
         <div class="container-fluid">
             <div class="row">
@@ -15,12 +19,12 @@
                             <div class="table-responsive">
                                 <form action="javascript:void(0)" id="CompanyFormAdd" name="CompanyFormAdd" class="form-horizontal" method="POST" enctype="multipart/form-data">
                                     {{-- <input type="hidden" name="kd_kondisi" id="kd_kondisi"> --}}
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Kondisi</label>
                                         <div class="col-sm-12">
                                             <input type="text" class="form-control" name="kd_kondisi" placeholder="Input kode Kondisi" maxlength="50" required="">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">Kode Mobil</label>
 
@@ -47,7 +51,7 @@
                                     <div class="form-group">
                                         <label for="name" class="col-sm-2 control-label">No Polisi</label>
                                         <div class="col-sm-12">
-                                            <input type="number" class="form-control" name="no_polisi" placeholder="Input Polisi" maxlength="50" required="">
+                                            <input type="text" class="form-control" name="no_polisi" placeholder="Input Polisi" maxlength="50" required="">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -101,7 +105,7 @@
                                     <br>
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                     </div>
                                 </form>
                                 @if ($message = Session::get('success'))

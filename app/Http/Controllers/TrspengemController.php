@@ -51,6 +51,23 @@ class TrspengemController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $sewa = DB::table('sewa')
+        ->where('no_sewa', $request->no_sewa)
+        ->count();
+        // dd($sewa);
+        if ($sewa >0) {
+            // return redirect()->back()->withSuccess('Data berhasil');
+            return redirect()->back()->with('error','No Sewa sudah ada');
+        }
+
+        $penyewa = DB::table('penyewa')
+        ->where('nik', $request->nik)
+        ->count();
+        // dd($penyewa);
+        if ($penyewa >0) {
+            // return redirect()->back()->withSuccess('Data berhasil');
+            return redirect()->back()->with('error','No Penyewa sudah ada');
+        }
 
 
         DB::table('sewa')->insert(

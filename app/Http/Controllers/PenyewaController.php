@@ -15,7 +15,7 @@ class PenyewaController extends Controller
     {
         if (request()->ajax()) {
             $data = Penyewa::select('*');
-            if (Session::get('hak_akses') == 'direktur') {
+            if (Session::get('hak_akses') == 'operasional') {
                 return datatables()->of($data)
                     ->addColumn('action', function ($data) {
                         $button = '<a href="javascript:void(0)" data-toggle="tooltip" id="' . $data->nik . '" onclick="editFunc(event)" data-original-title="Edit" class="edit btn btn-primary edit" >Edit</a>';
@@ -30,7 +30,7 @@ class PenyewaController extends Controller
                     ->make(true);
             }
         }
-        if (Session::get('hak_akses') == 'direktur') {
+        if (Session::get('hak_akses') == 'operasional') {
             return view('penyewa.indexd');
         }
         return view('penyewa.index');

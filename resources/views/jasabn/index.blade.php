@@ -98,7 +98,7 @@
 
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                                 </div>
                                             </form>
                                         </div>

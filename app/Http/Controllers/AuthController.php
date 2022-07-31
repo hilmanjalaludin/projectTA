@@ -30,11 +30,19 @@ class AuthController extends Controller
       'name' => 'required',
       'password' => 'required',
     ]);
-    $credentials = $request->only('name', 'password');
-    // dd(Auth::attempt($credentials));
     
+    // $credentials = $request->only('name', 'password');
+    $credentials = [
+      'name'     => $request->input('name'),
+      'password'  => $request->input('password'),
+      // 'password'  => '123456'
+      
+      ];
+    // dd(Auth::attempt($credentials));
+    // dd($credentials); 
+    // dd(Auth::attempt($credentials)); 
     if (Auth::attempt($credentials)) {
-      // dd('haloo'); 
+      
       // Auth::login($credentials);
       $data = DB::table('user')
         ->where('name', '=', Auth()->user()->name)

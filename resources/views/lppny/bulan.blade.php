@@ -11,7 +11,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4" style="text-align: center">Laporan Penyewaan Periode</h4>
+                            <h4 class="card-title mb-4" style="text-align: center">Laporan Penyewaan Bulanan</h4>
                             <div class="table-responsive">
                                 <div class="card-body">
                                     <table class="table table-bordered">

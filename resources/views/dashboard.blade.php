@@ -48,16 +48,15 @@
                 </div>
             </div>
             <!-- end row -->
-
+            <?php if (Session::get('hak_akses') == 'operasional') { ?>
             <div class="row">
-                <div class="col-md-4">
+                {{-- <div class="col-md-4">
                     <a href="{{ route('dtpng.index') }}">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
                                 <div class="d-flex">
                                     <div class="flex-grow-1">
                                         <h2 class="text-muted fw-medium">User</h2>
-                                        {{-- <h4 class="mb-0">1,235</h4> --}}
                                     </div>
 
                                     <div class="flex-shrink-0 align-self-center">
@@ -71,8 +70,8 @@
                             </div>
                         </div>
                     </a>
-                </div>
-                <div class="col-md-4">
+                </div> --}}
+                {{-- <div class="col-md-4">
                     <a href="{{ route('tarif.index') }}">
                         <div class="card mini-stats-wid">
                             <div class="card-body">
@@ -80,7 +79,7 @@
                                     <div class="flex-grow-1">
                                         <h2 class="text-muted fw-medium">Tarif Supir</h2>
                                         {{-- <h4 class="mb-0">$35, 723</h4> --}}
-                                    </div>
+                                    {{-- </div>
 
                                     <div class="flex-shrink-0 align-self-center ">
                                         <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
@@ -93,7 +92,7 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> --}} 
                 <div class="col-md-4">
                     <a href="{{ route('mobil.index') }}">
                         <div class="card mini-stats-wid">
@@ -184,7 +183,99 @@
                     </a>
                 </div>
             </div>
-
+            <?php }else if (Session::get('hak_akses') == 'direktur') { ?>
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="{{ route('dtpng.index') }}">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <h2 class="text-muted fw-medium">User</h2>
+                                            {{-- <h4 class="mb-0">1,235</h4> --}}
+                                        </div>
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                                <span class="avatar-title">
+                                                    <i class="bx bx-user font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ route('mobil.index') }}">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <h2 class="text-muted fw-medium">Mobil</h2>
+                                            {{-- <h4 class="mb-0">$16.2</h4> --}}
+                                        </div>
+    
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-car font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {{-- kebawah --}}
+                    <div class="col-md-4">
+                        <a href="{{ route('kondisi.index') }}">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <h2 class="text-muted fw-medium">Kondisi Mobil</h2>
+                                            {{-- <h4 class="mb-0">1,235</h4> --}}
+                                        </div>
+    
+                                        <div class="flex-shrink-0 align-self-center">
+                                            <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
+                                                <span class="avatar-title">
+                                                    <i class="bx bx-copy-alt font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ route('dtprk.index') }}">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="flex-grow-1">
+                                            <h2 class="text-muted fw-medium">Perkiraan</h2>
+                                            {{-- <h4 class="mb-0">$35, 723</h4> --}}
+                                        </div>
+    
+                                        <div class="flex-shrink-0 align-self-center ">
+                                            <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                                                <span class="avatar-title rounded-circle bg-primary">
+                                                    <i class="bx bx-book font-size-24"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                </div>
+            <?php } ?>
 
         </div>
         <!-- container-fluid -->

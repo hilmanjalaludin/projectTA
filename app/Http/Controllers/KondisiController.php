@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Kondisi;
 use Datatables;
 use App\Helpers\FlashMessages;
+use Validator, Redirect, Response;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -46,19 +47,9 @@ class KondisiController extends Controller
 
     public function store(Request $request)
     {
-        DB::table('mobil')
-            ->where('kd_mobil', $request->kd_mobil)
-            ->update(
-                [
-                    'kd_mobil' => $request->kd_mobil,
-                    'jenis' => $request->jenis,
-                    'no_polisi' => $request->no_polisi,
-                    'biaya' => $request->biaya,
-                ]
-            );
-        $company = Kondisi::insert(
+               $company = Kondisi::insert(
             [
-                'kd_kondisi' => $request->kd_kondisi,
+                // 'kd_kondisi' => $request->kd_kondisi,
                 'kd_mobil' => $request->kd_mobil,
                 'bensin' => $request->bensin,
                 'kilometer' => $request->kilometer,
@@ -69,7 +60,9 @@ class KondisiController extends Controller
             ]
         );
 
-        return Response()->json($company);
+        // return redirect()->back()->withSuccess('Kondisi berhasil di insert');
+        return \App::make('redirect')->back()->refresh()->withSuccess('Kondisi berhasil di insert');
+
     }
     public function update(Request $request)
     {
@@ -90,7 +83,7 @@ class KondisiController extends Controller
                 ]
             );
 
-        return Response()->json($company);
+            return redirect()->back()->withSuccess('Kondisi berhasil di update');
     }
 
 

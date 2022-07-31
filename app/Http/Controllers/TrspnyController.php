@@ -24,8 +24,8 @@ class TrspnyController extends Controller
         ->Join('mobil', 'mobil.kd_mobil', '=', 'detail_sewa.kd_mobil')
                 ->get();
         // dd($tampil);
-        $pilih_mobil = DB::table('detail_sewa')
-        ->Join('mobil', 'mobil.kd_mobil', '=', 'detail_sewa.kd_mobil')
+        $pilih_mobil = DB::table('mobil')
+        // ->leftJoin('detail_sewa', 'mobil.kd_mobil', '=', 'detail_sewa.kd_mobil')
         ->Join('kondisi', 'mobil.kd_mobil', '=', 'kondisi.kd_mobil')
         ->get();
         // <td>Kode Mobil</td>
@@ -44,15 +44,76 @@ class TrspnyController extends Controller
     public function detail($id)
     {
         // dd($id);
-        $category = DB::table('detail_sewa')
-        ->Join('mobil', 'mobil.kd_mobil', '=', 'detail_sewa.kd_mobil')
-        ->where('detail_sewa.kd_mobil', $id)
+        $category = DB::table('mobil')
+        // ->leftJoin('detail_sewa', 'mobil.kd_mobil', '=', 'detail_sewa.kd_mobil')
+        ->Join('kondisi', 'mobil.kd_mobil', '=', 'kondisi.kd_mobil')
+        ->where('kondisi.kd_mobil', $id)
         ->get();
 
         return response()->json($category);
     }
     
     public function store(Request $request)
+    {
+        // dd($request);
+        $sewa = DB::table('sewa')
+        ->where('no_sewa', $request->no_sewa)
+        ->count();
+        // dd($sewa);
+        if ($sewa >0) {
+            // return redirect()->back()->withSuccess('Data berhasil');
+            return redirect()->back()->with('error','No Sewa sudah ada');
+        }
+
+        $penyewa = DB::table('penyewa')
+        ->where('nik', $request->nik)
+        ->count();
+        // dd($penyewa);
+        if ($penyewa >0) {
+            // return redirect()->back()->withSuccess('Data berhasil');
+            return redirect()->back()->with('error','No Penyewa sudah ada');
+        }
+
+        
+        
+        DB::table('sewa')->insert(
+            [
+                'no_sewa' => $request->no_sewa,
+                'tgl_transaksi' => $request->tgl_transaksi,
+                'nik' => $request->nik,
+                'dp' => $request->dp,
+            ]
+        );
+
+        DB::table('detail_sewa')->insert(
+            [
+                'no_sewa' => $request->no_sewa,
+                'kd_mobil' => $request->kd_mobil,
+                'tgl_sewa' => $request->tgl_sewa,
+                'tgl_kembali' => $request->tgl_kembali,
+                'jam_kembali' => $request->jam_kembali,
+            ]
+        );
+       
+        DB::table('penyewa')->insert(
+            [
+                'nama' => $request->nama,
+                'nik' => $request->nik,
+                'telp' => $request->telp,
+                'alamat' => $request->alamat,
+            ]
+        );
+        DB::table('kembali')->insert(
+            [
+                'total_bayar' => $request->total_bayar,
+                'no_sewa' => $request->no_sewa,
+            ]
+        );
+        
+        return redirect()->back()->withSuccess('Data berhasil');
+    }
+    
+    public function update(Request $request)
     {
         // dd($request);
 

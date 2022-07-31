@@ -74,7 +74,7 @@
                                                     </div>
 
                                                     {{-- bag2 --}}
-                                                    <div class="col-md-3">
+                                                    {{-- <div class="col-md-3">
                                                         <label for="name" class="control-label" style="font-size:10px">Kode</label>
                                                         <button>CARI</button>
                                                         <input type="text" class="form-control" name="no_jurnal" placeholder="Input Kode" maxlength="50" required="">
@@ -89,7 +89,7 @@
                                                     </div>
                                                     <div class="col-md-3" style="padding-top: 6%">
                                                         <button>INPUT</button>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -149,7 +149,8 @@
                                             <div class="col-md-6">
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary">Simpan</button>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
+                                                    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button> --}}
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                                 </div>
 
                                             </div>

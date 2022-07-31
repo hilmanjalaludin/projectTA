@@ -35,7 +35,80 @@
                             <h4 class="card-title mb-4">Data Pengguna</h4>
                             <div class="table-responsive">
                                 <div class="pull-right mb-2">
-                                    <a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Tambah</a>
+                                    {{-- <a class="btn btn-success" onClick="add()" href="javascript:void(0)"> Tambah</a> --}}
+                                    <form action="javascript:void(0)" id="CompanyFormAdd" name="CompanyFormAdd" class="form-horizontal" method="POST" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">ID User</label>
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control"  name="id_user" placeholder="Input ID User" maxlength="50" required="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">Nama Pengguna</label>
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" name="name" placeholder="Input Nama Pengguna" maxlength="50" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Password</label>
+                                            <div class="col-sm-12">
+                                                <input class="form-control" type="text" name="password" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">Hak Akses</label>
+                                            <div class="col-sm-12">
+                                                {{-- <input type="text" class="form-control" name="hak_akses" value="supir" placeholder="Input Hak Akses" maxlength="50" required="" readonly> --}}
+                                                <select class="form-control m-bot15" name="hak_akses" required="">
+                                                    <option value="">Choose</option>
+                                                    <option value="supir">Supir </option>
+                                                    <option value="operasional">Operasional</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">Nomor KTP</label>
+                                            <div class="col-sm-12">
+                                                <input type="number" class="form-control" name="no_ktp" placeholder="Input No KTP" maxlength="50" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">Jenis Kelamin</label>
+                                            <div class="col-sm-12">
+                                                <!-- {{-- <input type="text" class="form-control" id="jenkel" name="jenkel" placeholder="Input Jenis Kelamin" maxlength="50" required=""> --}} -->
+                                                <select class="form-control m-bot15" name="jenkel" required="">
+                                                    <option value="">Choose</option>
+                                                    <option value="PRIA">
+                                                        PRIA </option>
+                                                    <option value="WANITA">
+                                                        WANITA</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">Alamat</label>
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" name="almt" placeholder="Input Alamat" maxlength="50" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name" class="col-sm-2 control-label">No Telpon</label>
+                                            <div class="col-sm-12">
+                                                <input type="text" class="form-control" name="telpon" placeholder="Input Telpon" maxlength="50" required="">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-offset-2 col-sm-10">
+                                            <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
+                                        </div>
+                                    </form>
                                 </div>
 
                                 @if ($message = Session::get('success'))
@@ -71,7 +144,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="javascript:void(0)" id="CompanyForm" name="CompanyForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
-                                                <!-- <input type="hidden" name="id_user" id="id_user"> -->
+                                                 <input type="hidden" name="id_user_a" id="id_user_a"> 
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">ID User</label>
                                                     <div class="col-sm-12">
@@ -95,7 +168,12 @@
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-2 control-label">Hak Akses</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" id="hak_akses" name="hak_akses" value="supir" placeholder="Input Hak Akses" maxlength="50" readonly>
+                                                        {{-- <input type="text" class="form-control" id="hak_akses" name="hak_akses" value="supir" placeholder="Input Hak Akses" maxlength="50" readonly> --}}
+                                                        <select class="form-control m-bot15" name="hak_akses" required="">
+                                                            <option value="">Choose</option>
+                                                            <option value="supir">Supir </option>
+                                                            <option value="operasional">Operasional</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -134,7 +212,7 @@
 
                                                 <div class="col-sm-offset-2 col-sm-10">
                                                     <button type="submit" class="btn btn-primary" id="btn-save">Simpan</button>
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -265,8 +343,9 @@
                 $('#CompanyModal').html("Edit Company");
                 $('#company-modal').modal('show');
                 $('#id_user').val(res.id_user);
+                $('#id_user_a').val(res.id_user);
                 $('#name').val(res.name);
-                $('#password').val(res.password);
+                // $('#password').val(res.password);
                 $('#hak_akses').val(res.hak_akses);
                 $('#no_ktp').val(res.no_ktp);
                 $('#jenkel').val(res.jenkel);
@@ -305,10 +384,11 @@
         var formData = new FormData(this);
         console.log('halo', formData)
         // return false
+        
 
         $.ajax({
             type: 'POST',
-            url: "{{ url('store-dtpng')}}",
+            url: "{{ url('updateusr-dtpng')}}",
             data: formData,
             cache: false,
             contentType: false,
@@ -319,6 +399,31 @@
                 oTable.fnDraw(false);
                 $("#btn-save").html('Submit');
                 $("#btn-save").attr("disabled", false);
+            },
+            error: function(data) {
+                console.log('ini data', data);
+            }
+        });
+    });
+    $('#CompanyFormAdd').submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        console.log('halo', formData)
+        // return false
+
+        $.ajax({
+            type: 'POST',
+            url: "{{ url('store-dtpng')}}",
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: (data) => {
+                var oTable = $('#get-dtprk').dataTable();
+                oTable.fnDraw(false);
+                $("#btn-save").html('Submit');
+                $("#btn-save").attr("disabled", false);
+               
             },
             error: function(data) {
                 console.log('ini data', data);

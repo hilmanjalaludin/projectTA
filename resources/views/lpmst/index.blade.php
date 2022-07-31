@@ -45,7 +45,7 @@
                                         <br>
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <button type="submit" class="btn btn-primary">Simpan</button>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.reload();">Tutup</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="window.location.href = '{{ route('dashboard.index')}}'">Tutup</button>
                                         </div>
                                     </form>
 
