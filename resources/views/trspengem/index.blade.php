@@ -50,7 +50,8 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">No Sewa</label>
                                                             <div class="col-sm-6">
-                                                                <input type="text" class="form-control" name="no_sewa" placeholder="Input no sewa" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="no_sewa" id="no_sewa" placeholder="Input No Sewa" maxlength="50" required="">
+                                                                <button type="button" onclick="mynosewa()">cari</button>
                                                             </div>
                                                             {{-- <div class="col-sm-6">
                                                                 <button>Cari</button>
@@ -106,7 +107,7 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Biaya Sewa</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="no_kembali" placeholder="Input no_kembali" maxlength="50" required="">
+                                                                <input type="number" class="form-control" name="biaya" placeholder="Input biaya sewa" maxlength="50" required="">
                                                             </div>
                                                         </div>
 
@@ -189,26 +190,28 @@
 
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Nama Operasional</label>
+                                                            <input type="hidden"  name="id_user" value="{{ Session::get('id_user') }}" >
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="supir" placeholder="Input Nama" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="nameop" value="{{ Session::get('name') }}" placeholder="Input Nama" maxlength="50" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">NIK Penyewa</label>
                                                             <div class="col-sm-12">
-                                                                <input type="number" class="form-control" name="nik" placeholder="Input nik" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Input NIK" maxlength="50" required="">
+                                                                <button type="button" onclick="mynik()">cari</button>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Nama</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Input Nama" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">No Telp</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="telp" placeholder="Input telp" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="telp" id="telp" placeholder="Input telp" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -337,5 +340,58 @@
     $(document).ready(function() {
         $(".alert").slideDown(300).delay(4000).slideUp(300);
     });
+
+    function mynik() 
+    {
+        let nik = document.getElementById("nik").value;
+        $.ajax({
+                    url: "/nik-trspengem/" + nik,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                    alert(response.message)
+                    console.log(response.data[0].alamat);
+                    document.getElementById('nama').value = response.data[0].nama;
+                    document.getElementById('telp').value = response.data[0].telp;
+                    document.getElementById('alamat').value = response.data[0].alamat;
+                        },
+                        error: function(xhr) {
+                        alert('Data Tidak ada')
+                       }
+            });
+    }
+   
+    function mynosewa() 
+    {
+        let no_sewa = document.getElementById("no_sewa").value;
+        $.ajax({
+                    url: "/no_sewa-trspengem/" + no_sewa,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                    alert(response.message)
+                    },
+                        error: function(xhr) {
+                        alert('Data Tidak ada')
+                    }
+            });
+    }
+    function category() 
+    {
+        let category = document.getElementById("category").value;
+        // $.ajax({
+        //             url: "/no_sewa-trspengem/" + no_sewa,
+        //             type: "GET",
+        //             dataType: "json",
+        //             success: function (response) {
+        //             alert(response.message)
+        //             },
+        //                 error: function(xhr) {
+        //                 alert('Data Tidak ada')
+        //             }
+        //     });
+    }
+
+
 </script>
 @endsection

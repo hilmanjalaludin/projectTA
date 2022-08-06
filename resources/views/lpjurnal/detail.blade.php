@@ -28,7 +28,7 @@
                                             @foreach ($tampil as $d)
                                             <td>{{ $d->tanggal }}</td>
                                             <td>{{ $d->kd_perkiraan }}</td>
-                                            <td>{{ $d->nm_perkiraan }}</td>
+                                            <td>{{ $d->nama_trans }}</td>
                                             <td>{{ $d->debet }}</td>
                                             <td>{{ $d->kredit }}</td>
                                             @endforeach

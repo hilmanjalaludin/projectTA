@@ -33,68 +33,57 @@
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">No Jurnal</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="no_jurnal" placeholder="Input Jurnal" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="no_jurnal" id="no_jurnal" placeholder="Input Jurnal" maxlength="50" required="">
+                                                        <button type="button" onclick="myno_jurnal()">cari</button>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">No Transaksi</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="no_trans" placeholder="Input No Transaksi" maxlength="50" required="">
+                                                        {{-- <input type="text" class="form-control" name="no_trans" placeholder="Input No Transaksi" maxlength="50" required=""> --}}
+                                                        <select class="form-control m-bot15" name="no_trans" id="notrans">
+                                                            <option value="">Choose</option>
+                                                            <?php foreach ($notrans as $v) : ?>
+                                                                <option value='<?php echo $v->no_sewa; ?>'>
+                                                                    <?php echo $v->nama;  ?>
+                                                                </option>
+                                                            <?php endforeach; ?>
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">Tanggal</label>
                                                     <div class="col-sm-12">
-                                                        <input type="date" class="form-control" name="tanggal" placeholder="Input Tanggal Transaksi" maxlength="50" required="">
+                                                        <input type="date" class="form-control" name="tanggal" id="tgl_transaksi" placeholder="Input Tanggal Transaksi" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">Nama Transaksi</label>
                                                     <div class="col-sm-12">
-                                                        <input type="text" class="form-control" name="nama_trans" placeholder="Input Nama Transaksi" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="nama_trans" id="nama" placeholder="Input Nama Transaksi" maxlength="50" required="">
                                                     </div>
                                                 </div>
 
                                                 <div class="row">
                                                     <div class="col-md-3">
                                                         <label for="name" class="control-label" style="font-size:10px">Kode</label>
-                                                        <button>CARI</button>
-                                                        <input type="text" class="form-control" name="kd_perkiraan" placeholder="Input Kode" maxlength="50" required="">
+                                                        <button type="button" onclick="mykode()">cari</button>
+                                                        <input type="text" class="form-control" id="kode" name="kd_perkiraan" placeholder="Input Kode" maxlength="50" required="">
                                                     </div>
                                                     <div class="col-md-3">
+                                                       {{-- <input type="hidden" name="no_jurnal" id="no_jurnal"> --}}
                                                         <label for="name" class="control-label" style="font-size:10px">Nama Perusahaan</label>
-                                                        <input type="text" class="form-control" name="nama_trans" placeholder="Input Nama Perusahaan" maxlength="50" required="">
+                                                        <input type="text" class="form-control" name="nama_trans" id="nama_trans" placeholder="Input Nama Perusahaan" maxlength="50" required="">
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label for="name" class="col-sm-6 control-label" style="font-size:10px">Debet</label>
-                                                        <input type="text" class="form-control" name="debet" placeholder="Input Debet" maxlength="50" required="">
+                                                        <input type="number" class="form-control" name="debet" id="debet" placeholder="Input Debet" maxlength="50" required="">
                                                     </div>
-                                                    <div class="col-md-3" style="padding-top: 6%">
-                                                        <button>INPUT</button>
-                                                    </div>
-
-                                                    {{-- bag2 --}}
-                                                    {{-- <div class="col-md-3">
-                                                        <label for="name" class="control-label" style="font-size:10px">Kode</label>
-                                                        <button>CARI</button>
-                                                        <input type="text" class="form-control" name="no_jurnal" placeholder="Input Kode" maxlength="50" required="">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label for="name" class="control-label" style="font-size:10px">Nama Perusahaan</label>
-                                                        <input type="text" class="form-control" name="nama_trans" placeholder="Input Nama Perusahaan" maxlength="50" required="">
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label for="name" class="col-sm-6 control-label" style="font-size:10px">Debet</label>
-                                                        <input type="text" class="form-control" name="debet" placeholder="Input Debet" maxlength="50" required="">
-                                                    </div>
-                                                    <div class="col-md-3" style="padding-top: 6%">
-                                                        <button>INPUT</button>
-                                                    </div> --}}
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <h4>Data Jurnal Sementara</h4>
-                                                <table class="table table-bordered">
+                                                <table class="table table-bordered" style="font-size: 12px;">
                                                     <thead>
                                                         <tr>
                                                             <td>Tanggal</td>
@@ -117,7 +106,7 @@
                                                     </tbody>
                                                 </table>
                                                 <h4>Jurnal Umum</h4>
-                                                <table class="table table-bordered">
+                                                <table class="table table-bordered" style="font-size: 12px;">
                                                     <thead>
                                                         <tr>
                                                             <td>Tanggal</td>
@@ -189,6 +178,76 @@
 <script>
     $(document).ready(function() {
         $(".alert").slideDown(300).delay(4000).slideUp(300);
+    });
+
+    function mykode() 
+    {
+        let kode = document.getElementById("kode").value;
+        $.ajax({
+                    url: "/kode-trsjurnal/" + kode,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                    alert(response.message)
+                    console.log(response.data[0]);
+                    // document.getElementById('no_jurnal').value = response.data[0].no_jurnal;
+                    // document.getElementById('nama_trans').value = response.data[0].nama_trans;
+                    // document.getElementById('debet').value = response.data[0].debet;
+                    },
+                        error: function(xhr) {
+                        alert('Data Tidak ada')
+                    }
+            });
+    }
+
+    function myno_jurnal() 
+    {
+        let no_jurnal = document.getElementById("no_jurnal").value;
+        // alert(no_jurnal)
+        // return false
+        $.ajax({
+                    url: "/no_jurnal-trsjurnal/" + no_jurnal,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                    alert(response.message)
+                    console.log(response.data[0]);
+                    },
+                        error: function(xhr) {
+                        alert('Data Tidak ada')
+                    }
+            });
+    }
+
+    $(document).ready(function() {
+        $('#notrans').on('change', function() {
+            var categoryID = $(this).val();
+            // alert(categoryID) 
+            // false
+            if (categoryID) {
+                $.ajax({
+                    url: "/detail-trsjurnal/" + categoryID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        if (data) {
+                            $.each(data, function(key, value) {
+
+                                console.log('ada', data[0].tgl_transaksi);
+                                // $('select[name="jenis"]').append('<option value="' + key + '">' + data[0].jenis + '</option>');
+                                document.getElementById('nama').value = data[0].nama;
+                                document.getElementById('tgl_transaksi').value = data[0].tgl_transaksi;
+                            });
+                        } else {
+                            $('#value').empty();
+                        }
+                    }
+                });
+            } else {
+                $('#value').empty();
+            }
+        });
+   
     });
 </script>
 @endsection

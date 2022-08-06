@@ -36,7 +36,8 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">No Sewa</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="no_sewa" placeholder="Input No Sewa" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="no_sewa" id="no_sewa" placeholder="Input No Sewa" maxlength="50" required="">
+                                                                <button type="button" onclick="mynosewa()">cari</button>
                                                             </div>
                                                         </div>
 
@@ -50,7 +51,8 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">NIK</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="nik" placeholder="Input NIK" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="nik" id="nik" placeholder="Input NIK" maxlength="50" required="">
+                                                                <button type="button" onclick="mynik()">cari</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -58,20 +60,20 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Nama</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="nama" placeholder="Input Nama" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="nama" id="nama" placeholder="Input Nama" maxlength="50" required="">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Telpon</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="telpon" placeholder="Input Telpon" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="telpon" id="telp" placeholder="Input Telpon" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Alamat</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="alamat" placeholder="Input Alamat" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Input Alamat" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -406,42 +408,74 @@ $('#city').html(data.html);
 
 <script>
     $(document).ready(function() {
-    $('#category').on('change', function() {
-        var categoryID = $(this).val();
-        // alert(categoryID)
-        // return false
-        //mobil=> jenis,no_polisi,biaya,bensin
-        //kondisi => bensin,kilometer,depan,belakang,kanan,kiri
-        if (categoryID) {
-            $.ajax({
-                url: "/detail-trspny/" + categoryID,
-                type: "GET",
-                dataType: "json",
-                success: function(data) {
-                    if (data) {
-                        $.each(data, function(key, jenis) {
+        $('#category').on('change', function() {
+            var categoryID = $(this).val();
+            if (categoryID) {
+                $.ajax({
+                    url: "/detail-trspny/" + categoryID,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        if (data) {
+                            $.each(data, function(key, jenis) {
 
-                            console.log('ada', data[0].jenis);
-                            $('select[name="jenis"]').append('<option value="' + key + '">' + data[0].jenis + '</option>');
-                            $('select[name="no_polisi"]').append('<option value="' + key + '">' + data[0].no_polisi + '</option>');
-                            $('select[name="bensin"]').append('<option value="' + key + '">' + data[0].bensin + '</option>');
-                            $('select[name="biaya"]').append('<option value="' + key + '">' + data[0].biaya + '</option>');
-                            $('select[name="depan"]').append('<option value="' + key + '">' + data[0].depan + '</option>');
-                            $('select[name="belakang"]').append('<option value="' + key + '">' + data[0].belakang + '</option>');
-                            $('select[name="kanan"]').append('<option value="' + key + '">' + data[0].kanan + '</option>');
-                            $('select[name="kiri"]').append('<option value="' + key + '">' + data[0].kiri + '</option>');
-                            $('select[name="kilometer"]').append('<option value="' + key + '">' + data[0].kilometer + '</option>');
-                        });
-                    } else {
-                        $('#jenis').empty();
+                                console.log('ada', data[0].jenis);
+                                $('select[name="jenis"]').append('<option value="' + key + '">' + data[0].jenis + '</option>');
+                                $('select[name="no_polisi"]').append('<option value="' + key + '">' + data[0].no_polisi + '</option>');
+                                $('select[name="bensin"]').append('<option value="' + key + '">' + data[0].bensin + '</option>');
+                                $('select[name="biaya"]').append('<option value="' + key + '">' + data[0].biaya + '</option>');
+                                $('select[name="depan"]').append('<option value="' + key + '">' + data[0].depan + '</option>');
+                                $('select[name="belakang"]').append('<option value="' + key + '">' + data[0].belakang + '</option>');
+                                $('select[name="kanan"]').append('<option value="' + key + '">' + data[0].kanan + '</option>');
+                                $('select[name="kiri"]').append('<option value="' + key + '">' + data[0].kiri + '</option>');
+                                $('select[name="kilometer"]').append('<option value="' + key + '">' + data[0].kilometer + '</option>');
+                            });
+                        } else {
+                            $('#jenis').empty();
+                        }
                     }
-                }
+                });
+            } else {
+                $('#jenis').empty();
+            }
+        });
+   
+    });
+
+    function mynik() 
+    {
+        let nik = document.getElementById("nik").value;
+        $.ajax({
+                    url: "/nik-trspny/" + nik,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                    alert(response.message)
+                    console.log(response.data[0].alamat);
+                    document.getElementById('nama').value = response.data[0].nama;
+                    document.getElementById('telp').value = response.data[0].telp;
+                    document.getElementById('alamat').value = response.data[0].alamat;
+                        },
+                        error: function(xhr) {
+                        alert('Data Tidak ada')
+                       }
             });
-        } else {
-            $('#jenis').empty();
-        }
-    });
-    });
+    }
+    function mynosewa() 
+    {
+        let no_sewa = document.getElementById("no_sewa").value;
+        $.ajax({
+                    url: "/no_sewa-trspny/" + no_sewa,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                    alert(response.message)
+                    },
+                        error: function(xhr) {
+                        alert('Data Tidak ada')
+                    }
+            });
+    }
 
     $(document).ready(function() {
         $(".alert").slideDown(300).delay(4000).slideUp(300);

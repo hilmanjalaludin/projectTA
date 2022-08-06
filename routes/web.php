@@ -100,14 +100,26 @@ Route::group(['middleware' => 'usersession'], function () {
     Route::get('get-trspny', 'TrspnyController@index')->name('trspny.index');
     Route::get('detail-trspny/{id}', 'TrspnyController@detail')->name('trspny.post');
     Route::post('store-trspny', 'TrspnyController@store')->name('trspny.store');
+    //button cari
+    Route::get('nik-trspny/{id}', 'TrspnyController@nik');
+    Route::get('no_sewa-trspny/{id}', 'TrspnyController@no_sewa');
 
     Route::post('store-trspengem', 'TrspengemController@store')->name('trspengem.store');
     Route::get('get-trspengem', 'TrspengemController@index')->name('trspengem.index');
     Route::post('detail-trspengem', 'TrspengemController@detail')->name('trspengem.post');
+     //button cari
+     Route::get('nik-trspengem/{id}', 'TrspengemController@nik');
+     Route::get('no_sewa-trspengem/{id}', 'TrspengemController@no_sewa');
 
     Route::post('store-trsjurnal', 'TrsjurnalController@store')->name('trsjurnal.store');
     Route::get('get-trsjurnal', 'TrsjurnalController@index')->name('trsjurnal.index');
     Route::post('detail-trsjurnal', 'TrsjurnalController@detail')->name('trsjurnal.post');
+    Route::get('detail-trsjurnal/{id}', 'TrsjurnalController@notrans');
+
+     //button cari
+    //  Route::get('nik-trspengem/{id}', 'TrspengemController@nik');
+     Route::get('kode-trsjurnal/{id}', 'TrsjurnalController@kode');
+     Route::get('no_jurnal-trsjurnal/{id}', 'TrsjurnalController@no_jurnal');
 });
 
 

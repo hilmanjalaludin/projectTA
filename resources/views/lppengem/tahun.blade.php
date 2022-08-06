@@ -35,9 +35,10 @@
                                                 <td>{{ $d->no_kembali }}</td>
                                                 <td>{{ $d->id_user }}</td>
                                                 <td>{{ $d->nik }}</td>
+                                                <td>{{ $d->kd_mobil }}</td>
                                                 <td>{{ $d->tgl_sewa }}</td>
                                                 <td>{{ $d->tgl_kembali }}</td>
-                                                <td>{{ $d->tgl_kembali }}</td>
+                                                <td>{{ $d->terlambat }}</td>
                                                 <td>{{ $d->denda_telat }}</td>
                                                 <td>{{ $d->denda_kondisi }}</td>
                                                 <td>{{ $d->kondisi }}</td>

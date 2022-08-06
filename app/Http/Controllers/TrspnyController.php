@@ -52,6 +52,53 @@ class TrspnyController extends Controller
 
         return response()->json($category);
     }
+   
+    public function nik($id)
+    {
+        // dd($id);
+        $nik = DB::table('penyewa')
+        ->where('nik', $id)
+        ->count();
+        
+        if ($nik > 0) {
+            $dtnik = DB::table('penyewa')
+            ->where('nik', $id)
+            ->get();
+            
+            return response()->json([
+                'data' =>  $dtnik,
+                'success' => 1,
+                'message' => 'Data Sudah ada',
+            ], 200);
+        }
+        return response()->json([
+            'data' => null,
+            'success' => 0,
+            'message' => 'Data Tidak ada',
+        ], 400);
+       
+    }
+    public function no_sewa($id)
+    {
+        // dd($id);
+        $nik = DB::table('sewa')
+        ->where('no_sewa', $id)
+        ->count();
+        
+        if ($nik > 0) {
+            return response()->json([
+                'data' =>  null,
+                'success' => 1,
+                'message' => 'Data sudah ada silahkan cari nomor lain',
+            ], 200);
+        }
+        return response()->json([
+            'data' => null,
+            'success' => 1,
+            'message' => 'Data tidak ada Nomor bisa digunakan',
+        ], 200);
+       
+    }
     
     public function store(Request $request)
     {
@@ -69,9 +116,26 @@ class TrspnyController extends Controller
         ->where('nik', $request->nik)
         ->count();
         // dd($penyewa);
-        if ($penyewa >0) {
-            // return redirect()->back()->withSuccess('Data berhasil');
-            return redirect()->back()->with('error','No Penyewa sudah ada');
+        if ($penyewa < 0) {
+            DB::table('penyewa')->insert(
+                [
+                    'nama' => $request->nama,
+                    'nik' => $request->nik,
+                    'telp' => $request->telp,
+                    'alamat' => $request->alamat,
+                ]
+            );
+        }else{
+            DB::table('penyewa')
+            ->where('nik', $request->nik)
+            ->update(
+                [
+                    'nama' => $request->nama,
+                    'alamat' => $request->alamat,
+                    'telp' => $request->telp,
+
+                ]
+            );
         }
 
         
@@ -95,18 +159,19 @@ class TrspnyController extends Controller
             ]
         );
        
-        DB::table('penyewa')->insert(
-            [
-                'nama' => $request->nama,
-                'nik' => $request->nik,
-                'telp' => $request->telp,
-                'alamat' => $request->alamat,
-            ]
-        );
+
         DB::table('kembali')->insert(
             [
                 'total_bayar' => $request->total_bayar,
                 'no_sewa' => $request->no_sewa,
+            ]
+        );
+        $id = DB::getPdo()->lastInsertId();
+        DB::table('detail_kembali')->insert(
+            [
+                'no_kembali' => $id,
+                // 'total_bayar' => $request->total_bayar,
+                // 'no_sewa' => $request->no_sewa,
             ]
         );
         

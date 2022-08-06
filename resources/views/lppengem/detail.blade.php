@@ -11,7 +11,7 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Laporan Jurnal Perperiode</h4>
+                            <h4 class="card-title mb-4">Laporan Pengembalian Perperiode</h4>
                             <div class="table-responsive">
                                 <div class="card-body">
                                     <table class="table table-bordered">
@@ -35,9 +35,10 @@
                                                 <td>{{ $d->no_kembali }}</td>
                                                 <td>{{ $d->id_user }}</td>
                                                 <td>{{ $d->nik }}</td>
+                                                <td>{{ $d->kd_mobil }}</td>
                                                 <td>{{ $d->tgl_sewa }}</td>
                                                 <td>{{ $d->tgl_kembali }}</td>
-                                                <td>{{ $d->tgl_kembali }}</td>
+                                                <td>{{ $d->terlambat }}</td>
                                                 <td>{{ $d->denda_telat }}</td>
                                                 <td>{{ $d->denda_kondisi }}</td>
                                                 <td>{{ $d->kondisi }}</td>
