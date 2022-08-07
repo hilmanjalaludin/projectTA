@@ -54,7 +54,7 @@
                                                 <div class="form-group">
                                                     <label for="name" class="col-sm-6 control-label">Tanggal</label>
                                                     <div class="col-sm-12">
-                                                        <input type="date" class="form-control" name="tanggal" id="tgl_transaksi" placeholder="Input Tanggal Transaksi" maxlength="50" required="">
+                                                        <input type="date" class="form-control" name="tanggal"  placeholder="Input Tanggal Transaksi" maxlength="50" required="">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -82,7 +82,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <h4>Data Jurnal Sementara</h4>
+                                                <h4>Data Jurnal Hari ini</h4>
                                                 <table class="table table-bordered" style="font-size: 12px;">
                                                     <thead>
                                                         <tr>
@@ -236,7 +236,7 @@
                                 console.log('ada', data[0].tgl_transaksi);
                                 // $('select[name="jenis"]').append('<option value="' + key + '">' + data[0].jenis + '</option>');
                                 document.getElementById('nama').value = data[0].nama;
-                                document.getElementById('tgl_transaksi').value = data[0].tgl_transaksi;
+                                // document.getElementById('tgl_transaksi').value = data[0].tgl_transaksi;
                             });
                         } else {
                             $('#value').empty();

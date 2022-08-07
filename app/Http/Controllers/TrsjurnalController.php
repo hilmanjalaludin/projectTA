@@ -16,10 +16,11 @@ class TrsjurnalController extends Controller
             ->Join('penyewa', 'penyewa.nik', '=', 'sewa.nik')
             ->select('no_sewa','nama')
             ->get();
-
+        $tgl = date('Y-m-d');
         $tampil1 = DB::table('jurnal')
             ->Join('detail_jurnal', 'detail_jurnal.no_jurnal', '=', 'jurnal.no_jurnal')
             ->leftJoin('perkiraan', 'detail_jurnal.kd_perkiraan', '=', 'perkiraan.kd_perkiraan')
+            ->where('tanggal', $tgl)
             ->get();
         $tampil2 = DB::table('jurnal')
             ->Join('detail_jurnal', 'detail_jurnal.no_jurnal', '=', 'jurnal.no_jurnal')
