@@ -110,6 +110,7 @@ Route::group(['middleware' => 'usersession'], function () {
      //button cari
      Route::get('nik-trspengem/{id}', 'TrspengemController@nik');
      Route::get('no_sewa-trspengem/{id}', 'TrspengemController@no_sewa');
+     Route::get('no_kembali-trspengem/{id}', 'TrspengemController@no_kembali');
 
     Route::post('store-trsjurnal', 'TrsjurnalController@store')->name('trsjurnal.store');
     Route::get('get-trsjurnal', 'TrsjurnalController@index')->name('trsjurnal.index');

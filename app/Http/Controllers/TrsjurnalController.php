@@ -78,13 +78,13 @@ class TrsjurnalController extends Controller
             return response()->json([
                 'data' =>  $nik,
                 'success' => 1,
-                'message' => 'Data ada ',
+                'message' => 'Data sudah ada silahkan cari nomor yang lain',
             ], 200);
         }
         return response()->json([
             'data' => null,
             'success' => 1,
-            'message' => 'Data tidak ada',
+            'message' => 'Data tidak ada nomor bisa digunakan',
         ], 200);
        
     }

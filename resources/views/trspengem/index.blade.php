@@ -42,7 +42,8 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">No Pengembalian</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="no_kembali" placeholder="Input no_kembali" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="no_kembali" id="no_kembali" placeholder="Input no_kembali" maxlength="50" required="">
+                                                                <button type="button" onclick="nokembali()">cari</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -121,13 +122,13 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Jam Sewa</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="jam_sewa" placeholder="Input jam_sewa" maxlength="50" required="">
+                                                                <input type="number" class="form-control" name="jam_sewa" placeholder="Input jam sewa" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Lama Sewa</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="lama_sewa" placeholder="Input lama_sewa" maxlength="50" required="">
+                                                                <input type="number" class="form-control" name="lama_sewa" placeholder="Input Lama sewa" maxlength="50" required="">
                                                             </div>
                                                         </div>
 
@@ -143,19 +144,19 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-12 control-label">Jam Kembali</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="jam_kembali" placeholder="Input jam_kembali" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="jam_kembali" placeholder="Input Jam kembali" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-12 control-label">Jam Pengembalian</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="jam_kembali" placeholder="Input jam_kembali" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="jam_kembali" placeholder="Input jam Pengembalian" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-12 control-label">Denda Telat</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="denda_telat" placeholder="Input denda_telat" maxlength="50" required="">
+                                                                <input type="number" class="form-control" name="denda_telat" placeholder="Input Denda telat" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -167,13 +168,13 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-12 control-label">Keterangan</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="keterangan" placeholder="Input keterangan" maxlength="50" required="">
+                                                                <input type="text" class="form-control" name="keterangan" placeholder="Input Keterangan" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-12 control-label">Denda Kondisi</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="denda_kondisi" placeholder="Input denda_kondisi" maxlength="50" required="">
+                                                                <input type="number" class="form-control" name="denda_kondisi" placeholder="Input Denda kondisi" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                         <br>
@@ -211,7 +212,7 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">No Telp</label>
                                                             <div class="col-sm-12">
-                                                                <input type="text" class="form-control" name="telp" id="telp" placeholder="Input telp" maxlength="50" required="">
+                                                                <input type="number" class="form-control" name="telp" id="telp" placeholder="Input telpon" maxlength="50" required="">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -219,7 +220,12 @@
                                                         <div class="form-group">
                                                             <label for="name" class="col-sm-6 control-label">Terlambat</label>
                                                             <div class="col-sm-6">
-                                                                <input type="text" class="form-control" name="terlambat" placeholder="Input Terlambat" maxlength="50" required="">
+                                                                {{-- <input type="text" class="form-control" name="terlambat" placeholder="Input Terlambat" maxlength="50" required=""> --}}
+                                                                <select class="form-control m-bot15" name="terlambat" required="">
+                                                                    <option value="">Choose</option>
+                                                                    <option value="Terlambat">Terlambat </option>
+                                                                    <option value="Tidak terlambat">Tidak terlambat</option>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -392,6 +398,22 @@
         //     });
     }
 
+    function nokembali() 
+    {
+
+        let no_kembali = document.getElementById("no_kembali").value;
+        $.ajax({
+                    url: "/no_kembali-trspengem/" + no_kembali,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (response) {
+                    alert(response.message)
+                    },
+                        error: function(xhr) {
+                        alert('Data Tidak ada')
+                    }
+            });
+    }
 
 </script>
 @endsection

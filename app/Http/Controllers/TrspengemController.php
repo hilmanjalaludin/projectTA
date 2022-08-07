@@ -210,5 +210,26 @@ class TrspengemController extends Controller
         ], 200);
        
     }
+    public function no_kembali($id)
+    {
+        // dd($id);
+        $nik = DB::table('kembali')
+        ->where('no_kembali', $id)
+        ->count();
+        
+        if ($nik > 0) {
+            return response()->json([
+                'data' =>  null,
+                'success' => 1,
+                'message' => 'Data sudah ada silahkan cari nomor yang lain',
+            ], 200);
+        }
+        return response()->json([
+            'data' => null,
+            'success' => 1,
+            'message' => 'Data tidak ada nomor bisa digunakan',
+        ], 200);
+       
+    }
     
 }
